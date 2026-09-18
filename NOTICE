@@ -1,0 +1,18 @@
+literature-daily
+Copyright 2026 JuneYaooo
+
+This product includes original skill guidance, two deterministic scripts
+(PubMed incremental fetching and digest rendering with an anti-plagiarism
+gate), and evaluation artifacts released under the Apache License, Version 2.0.
+
+PubMed citation metadata retrieved during real runs originates from the
+NCBI E-utilities service and is used in accordance with the NCBI policies
+(https://www.ncbi.nlm.nih.gov/home/about/policies/). Abstracts are
+copyrighted by their publishers: committed run artifacts carry redacted
+abstract fields, and digests contain only original one-line Chinese notes,
+links, and metadata.
+
+All evaluation fixtures (PMIDs 99010001-99010006, titles, authors, journals,
+and abstracts) are synthetic and fabricated for testing; they do not point to
+real papers. Products named in references/benchmarks.md identify sources of
+design lessons only; nothing from them is redistributed in this repository.

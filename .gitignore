@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.local-evals/
+output/
+outputs/
+# literature-daily 本地状态与产物（seen/候选清单/日报不入库）
+/data/
+/reports/

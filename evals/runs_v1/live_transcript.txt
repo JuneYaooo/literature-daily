@@ -1,0 +1,25 @@
+# literature-daily 真实运行 · 2026-09-19 · macOS arm64 · Python 3.13 · config.example.json（3 关键词 · retmax 6 · reldate 7 · 间隔 1.1s，实际 4 次请求）
+# 每日流程第 1 步：增量抓取 PubMed（3 次 esearch + 1 次 efetch）
+$ python3 scripts/fetch_pubmed.py config.example.json --seen data/seen.json -o data/candidates_live.json --date 2026-09-19
+[g][fetch] 关键词 3 个 · reldate=7 天 · retmax=6 · PubMed（间隔 1.1s）
+[g][esearch] “sepsis biomarker” → 近 7 天命中 33，取回 6
+[g][esearch] “machine learning sepsis” → 近 7 天命中 12，取回 6
+[g][esearch] “early warning score” → 近 7 天命中 14，取回 6
+[g][dedup] 本轮去重前 17 篇 · 已看过跳过 0 篇 · 新增 17 篇
+[g][efetch] 取回 17 篇元数据与摘要
+[g][done] 候选清单 → data/candidates_live.json
+[g][done] seen 已原子写回 → data/seen.json（累计 17 篇）
+# 每日流程第 2 步：Agent 对照研究方向分档后，渲染日报（渲染前先过 25 词防抄袭校验）
+$ python3 scripts/render_digest.py data/candidates_live.json data/verdicts_live.json -o reports/2026-09-19.md
+[g][render] 必读 3 · 值得扫一眼 7 · 可跳过 7
+[g][render] 防抄袭校验通过（对照 10 篇摘要，阈值连续 25 词）
+[g][done] 日报 → reports/2026-09-19.md
+# 同日复跑（模拟每日增量）：17 篇全部命中 seen → 0 新增，只发 3 次 esearch、不再调 efetch
+$ python3 scripts/fetch_pubmed.py config.example.json --seen data/seen.json -o /tmp/candidates_rerun.json --date 2026-09-19
+[g][fetch] 关键词 3 个 · reldate=7 天 · retmax=6 · PubMed（间隔 1.1s）
+[g][esearch] “sepsis biomarker” → 近 7 天命中 33，取回 6
+[g][esearch] “machine learning sepsis” → 近 7 天命中 12，取回 6
+[g][esearch] “early warning score” → 近 7 天命中 14，取回 6
+[g][dedup] 本轮去重前 17 篇 · 已看过跳过 17 篇 · 新增 0 篇
+[g][done] 候选清单 → /tmp/candidates_rerun.json
+[g][done] seen 已原子写回 → data/seen.json（累计 17 篇）

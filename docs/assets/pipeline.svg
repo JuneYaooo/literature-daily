@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="360" viewBox="0 0 1120 360" role="img" aria-labelledby="t d">
+  <title id="t">literature-daily 工作流程</title>
+  <desc id="d">配置关键词与研究方向后，确定性脚本抓取 PubMed 并增量去重，Agent 对照研究方向分档并写中文一句话导读，渲染脚本校验防抄袭红线后输出 markdown 日报</desc>
+  <rect width="1120" height="360" fill="#FAF8F3"/>
+  <text x="560" y="46" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="24" font-weight="700" fill="#10241E" text-anchor="middle">每日一次的两步流程：脚本做确定性重活，Agent 只做语义判断</text>
+  <g font-family="PingFang SC, Hiragino Sans GB, sans-serif">
+    <rect x="40" y="90" width="230" height="150" rx="12" fill="#FFFFFF" stroke="#2E6E5C" stroke-width="2"/>
+    <text x="155" y="120" font-size="19" font-weight="700" fill="#10241E" text-anchor="middle">config.json</text>
+    <text x="155" y="152" font-size="15" fill="#40514A" text-anchor="middle">关键词列表（无上限）</text>
+    <text x="155" y="176" font-size="15" fill="#40514A" text-anchor="middle">研究方向描述</text>
+    <text x="155" y="200" font-size="15" fill="#40514A" text-anchor="middle">retmax / reldate 窗口</text>
+    <text x="155" y="224" font-size="13" fill="#7C8A82" text-anchor="middle">本地文件，不出本机</text>
+
+    <rect x="330" y="90" width="240" height="150" rx="12" fill="#FFFFFF" stroke="#2E6E5C" stroke-width="2"/>
+    <text x="450" y="120" font-size="19" font-weight="700" fill="#10241E" text-anchor="middle">fetch_pubmed.py</text>
+    <text x="450" y="152" font-size="15" fill="#40514A" text-anchor="middle">esearch 增量窗口（edat）</text>
+    <text x="450" y="176" font-size="15" fill="#40514A" text-anchor="middle">seen.json 去重（原子写回）</text>
+    <text x="450" y="200" font-size="15" fill="#40514A" text-anchor="middle">efetch 元数据 + 摘要</text>
+    <text x="450" y="224" font-size="13" fill="#7C8A82" text-anchor="middle">间隔 1.1s · 纯标准库 urllib</text>
+
+    <rect x="630" y="90" width="210" height="150" rx="12" fill="#16302A"/>
+    <text x="735" y="120" font-size="19" font-weight="700" fill="#F2EFE6" text-anchor="middle">Agent（语义层）</text>
+    <text x="735" y="152" font-size="15" fill="#BFEAD2" text-anchor="middle">对照研究方向分档</text>
+    <text x="735" y="176" font-size="15" fill="#BFEAD2" text-anchor="middle">必读 / 值得扫一眼 / 可跳过</text>
+    <text x="735" y="200" font-size="15" fill="#BFEAD2" text-anchor="middle">每篇一句中文导读</text>
+    <text x="735" y="224" font-size="13" fill="#7FAE9B" text-anchor="middle">读摘要后用自己的话改写</text>
+
+    <rect x="900" y="90" width="180" height="150" rx="12" fill="#FFFFFF" stroke="#2E6E5C" stroke-width="2"/>
+    <text x="990" y="120" font-size="19" font-weight="700" fill="#10241E" text-anchor="middle">render_digest.py</text>
+    <text x="990" y="152" font-size="15" fill="#40514A" text-anchor="middle">防抄袭红线校验</text>
+    <text x="990" y="176" font-size="15" fill="#40514A" text-anchor="middle">摘要 ≥25 词照抄即拒绝</text>
+    <text x="990" y="200" font-size="15" fill="#40514A" text-anchor="middle">统计区 + 去重统计</text>
+    <text x="990" y="224" font-size="13" fill="#7C8A82" text-anchor="middle">输出 markdown 日报</text>
+
+    <line x1="270" y1="165" x2="322" y2="165" stroke="#2E6E5C" stroke-width="3" marker-end="url(#a)"/>
+    <line x1="570" y1="165" x2="622" y2="165" stroke="#2E6E5C" stroke-width="3" marker-end="url(#a)"/>
+    <line x1="840" y1="165" x2="892" y2="165" stroke="#2E6E5C" stroke-width="3" marker-end="url(#a)"/>
+    <line x1="990" y1="240" x2="990" y2="282" stroke="#2E6E5C" stroke-width="3" marker-end="url(#a)"/>
+
+    <rect x="280" y="286" width="620" height="48" rx="10" fill="#E8734A"/>
+    <text x="590" y="316" font-size="19" font-weight="700" fill="#FFFFFF" text-anchor="middle">reports/YYYY-MM-DD.md：导读 + 链接 + 元数据</text>
+  </g>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#2E6E5C"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "suite": "literature-daily-v1",
+  "case_file": "cases_v1.jsonl",
+  "rubric_file": "rubric_v1.md",
+  "layers": {
+    "script_behavior": {
+      "runner": "python3 -m unittest discover tests（27 项，全部离线夹具）+ 对 evals/fixtures/offline_v1 运行 scripts/fetch_pubmed.py 与 scripts/render_digest.py，逐条核对 cases_v1.jsonl 的 required/forbidden 原子检查",
+      "runs_per_case": "确定性脚本 1 次 + 确定性用例显式双跑验证 sha256（c3/c5）",
+      "note": "c2 含回归项：图书章节 PubmedBookArticle 解析（来自 2026-09-19 真实运行缺陷）"
+    },
+    "agent_workflow": {
+      "runner": "ZCode CLI 中的 Agent 读取真实候选清单（2026-09-19，17 篇）对照 research_interests 分档并撰写中文一句话导读，产物见 runs_v1/live_verdicts_v1.json，渲染结果见 runs_v1/live_digest_2026-09-19.md",
+      "runs_per_case": 1
+    }
+  },
+  "conditions": ["skill"],
+  "baseline_note": "基线是 My NCBI 邮件推送/Stork 免费档：只给原始命中列表、无语义降噪、无中文导读、无跨关键词去重，无法在同一夹具上自动化复现其'agent 分档'行为，故不作 baseline/skill 数值对比。",
+  "judging": {
+    "judge": "开发同一 Agent（GLM / ZCode CLI）自评，标 review_status=model_only",
+    "blind_condition_labels": false,
+    "human_review": "尚未进行独立人工复核，是当前评测的主要限制；分档合理性与导读质量尤需医学信息学背景的人工抽查"
+  },
+  "pass_rule": {
+    "critical_failure_must_be_false": true,
+    "script_layer": "全部原子检查通过",
+    "agent_layer_minimum_mean_dimension_score": 3.0
+  },
+  "current_run": {
+    "status": "completed",
+    "date": "2026-09-19",
+    "model": "GLM（ZCode CLI 内置模型）",
+    "skill_version": "0.1.0",
+    "environment": {
+      "os": "macOS 25.5.0 arm64 (Darwin)",
+      "python": "3.13",
+      "network": "脚本层/单测全程离线夹具；c6 为真实调用 PubMed E-utilities（4+3 次请求，间隔 1.1s，无 api_key）"
+    },
+    "artifacts": [
+      "runs_v1/offline_candidates_v1.json",
+      "runs_v1/offline_digest_v1.md",
+      "runs_v1/live_candidates_v1.json",
+      "runs_v1/live_verdicts_v1.json",
+      "runs_v1/live_digest_2026-09-19.md",
+      "runs_v1/live_transcript.txt",
+      "runs_v1/hashes_v1.json"
+    ]
+  }
+}

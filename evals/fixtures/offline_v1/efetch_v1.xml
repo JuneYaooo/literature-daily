@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2024//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_240101.dtd">
+<!--
+  合成夹具（synthetic fixture）：以下 5 篇"文献"（PMID 99010001-99010005）全部为人工编造，
+  标题、作者、期刊、摘要、DOI 均不指向任何真实论文，仅用于离线测试解析与渲染边界：
+  无 DOI（99010002）、无摘要（99010003）、作者名带后缀 Jr（99010001）、
+  集体作者（99010004）、结构化摘要与 MedlineDate（99010003/99010004）。
+-->
+<PubmedArticleSet>
+  <PubmedArticle>
+    <MedlineCitation Status="In-Data-Review" Owner="NLM">
+      <PMID Version="1">99010001</PMID>
+      <Article PubModel="Print-Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">1068-0640</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <Volume>54</Volume>
+            <Issue>9</Issue>
+            <PubDate>
+              <Year>2026</Year>
+              <Month>Sep</Month>
+              <Day>12</Day>
+            </PubDate>
+          </JournalIssue>
+          <Title>Critical Care Medicine</Title>
+          <ISOAbbreviation>Crit Care Med</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle Language="eng">Machine learning predicts intensive care mortality from the first six hours of vital signs</ArticleTitle>
+        <Pagination><MedlinePgn>1120-1128</MedlinePgn></Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author><LastName>Zhang</LastName><ForeName>Wei</ForeName><Initials>W</Initials></Author>
+          <Author ValidYN="Y"><LastName>Smith</LastName><ForeName>John</ForeName><Initials>J</Initials><Suffix>Jr</Suffix></Author>
+          <Author ValidYN="Y"><LastName>Okafor</LastName><ForeName>Adaeze</ForeName><Initials>A</Initials></Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+          <PublicationType UI="D052061">Research Support, N.I.H., Extramural</PublicationType>
+        </PublicationTypeList>
+        <Abstract>
+          <AbstractText>Early warning of clinical deterioration remains challenging in intensive care units. We developed a gradient boosted decision tree trained on the first six hours of vital signs and laboratory results from 42118 admissions to predict in-hospital mortality. In temporal validation the model achieved an area under the receiver operating characteristic curve of 0.86, compared with 0.74 for the conventional early warning score. External validation in two hospitals confirmed calibration. Our results suggest that machine learning applied to routine electronic health record data can identify high risk patients several hours before clinical deterioration.</AbstractText>
+        </Abstract>
+      </Article>
+      <ChemicalList/>
+      <CitationSubset>IM</CitationSubset>
+      <MeshHeadingList/>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed"><Year>2026</Year><Month>9</Month><Day>12</Day></PubMedPubDate>
+      </History>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">99010001</ArticleId>
+        <ArticleId IdType="doi">10.9999/syn.2026.0001</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+
+  <PubmedArticle>
+    <MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM">
+      <PMID Version="1">99010002</PMID>
+      <Article PubModel="Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">0342-4642</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate><Year>2026</Year><Month>Sep</Month><Day>10</Day></PubDate>
+          </JournalIssue>
+          <Title>Intensive Care Medicine</Title>
+          <ISOAbbreviation>Intensive Care Med</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle Language="eng">Serum <i>procalcitonin</i> kinetics guide antibiotic stewardship in ventilator-associated pneumonia</ArticleTitle>
+        <Pagination><MedlinePgn>E1-E8</MedlinePgn></Pagination>
+        <ELocationID EIdType="pii" ValidYN="Y">SYN-PII-0002</ELocationID>
+        <Abstract>
+          <AbstractText>Procalcitonin kinetics over the first three days of therapy were associated with shorter antibiotic courses in a retrospective cohort of 1,204 ventilator-associated pneumonia patients. A decline of at least thirty percent by day three identified patients who could safely stop antibiotics.</AbstractText>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y"><LastName>Lopez</LastName><ForeName>Marta</ForeName><Initials>M</Initials></Author>
+          <Author ValidYN="Y"><LastName>Rossi</LastName><ForeName>Enrico</ForeName><Initials>E</Initials></Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList><PublicationType UI="D016428">Journal Article</PublicationType></PublicationTypeList>
+      </Article>
+    </MedlineCitation>
+    <PubmedData>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">99010002</ArticleId>
+        <ArticleId IdType="pii">SYN-PII-0002</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+
+  <PubmedArticle>
+    <MedlineCitation Status="In-Process" Owner="NLM">
+      <PMID Version="1">99010003</PMID>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0003-2999</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>143</Volume>
+            <Issue>3</Issue>
+            <PubDate><MedlineDate>2026 Sep-Oct</MedlineDate></PubDate>
+          </JournalIssue>
+          <Title>Anesthesia &amp; Analgesia</Title>
+          <ISOAbbreviation>Anesth Analg</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle Language="eng">Delirium screening bundles in the post anesthesia care unit: a stepped wedge trial</ArticleTitle>
+        <Pagination><MedlinePgn>401-409</MedlinePgn></Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y"><LastName>Chen</LastName><ForeName>Li</ForeName><Initials>L</Initials></Author>
+          <Author ValidYN="Y"><LastName>Wang</LastName><ForeName>Hong</ForeName><Initials>H</Initials></Author>
+          <Author ValidYN="Y"><LastName>Grunberg</LastName><ForeName>Katrin</ForeName><Initials>K</Initials></Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+          <PublicationType UI="D017041">Randomized Controlled Trial</PublicationType>
+        </PublicationTypeList>
+      </Article>
+    </MedlineCitation>
+    <PubmedData>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">99010003</ArticleId>
+        <ArticleId IdType="doi">10.9999/syn.2026.0003</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+
+  <PubmedArticle>
+    <MedlineCitation Status="Publisher" Owner="NLM">
+      <PMID Version="1">99010004</PMID>
+      <Article PubModel="Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">0031-4005</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate><Year>2026</Year></PubDate>
+          </JournalIssue>
+          <Title>Pediatrics</Title>
+          <ISOAbbreviation>Pediatrics</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle Language="eng">Biomarker panels for septic shock recognition in children: a multicenter prospective study</ArticleTitle>
+        <Abstract>
+          <AbstractText Label="BACKGROUND">Pediatric septic shock is difficult to recognize early.</AbstractText>
+          <AbstractText Label="METHODS">We prospectively enrolled 3,102 children across 18 emergency departments and compared a three-biomarker panel with single markers.</AbstractText>
+          <AbstractText Label="RESULTS">The panel improved sensitivity from 0.71 to 0.84 without loss of specificity.</AbstractText>
+          <AbstractText Label="CONCLUSIONS">A simple biomarker panel may support earlier recognition of pediatric septic shock.</AbstractText>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+          <CollectiveName>Pediatric Sepsis Consortium</CollectiveName>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+          <PublicationType UI="D016448">Multicenter Study</PublicationType>
+        </PublicationTypeList>
+      </Article>
+    </MedlineCitation>
+    <PubmedData>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">99010004</ArticleId>
+        <ArticleId IdType="pmc">PMC0000004</ArticleId>
+        <ArticleId IdType="doi">10.9999/syn.2026.0004</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">99010005</PMID>
+      <Article PubModel="Electronic">
+        <Journal>
+          <ISSN IssnType="Electronic">2056-6674</ISSN>
+          <JournalIssue CitedMedium="Internet">
+            <PubDate><Year>2026</Year><Month>Sep</Month><Day>8</Day></PubDate>
+          </JournalIssue>
+          <Title>npj Digital Medicine</Title>
+          <ISOAbbreviation>NPJ Digit Med</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle Language="eng">Deep learning early warning for sepsis on general wards: a stepped cluster randomized implementation</ArticleTitle>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y"><LastName>Tanaka</LastName><ForeName>Sho</ForeName><Initials>S</Initials></Author>
+          <Author ValidYN="Y"><LastName>Mueller</LastName><ForeName>Katrin</ForeName><Initials>K</Initials></Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList><PublicationType UI="D016428">Journal Article</PublicationType></PublicationTypeList>
+        <Abstract>
+          <AbstractText>Deploying a sepsis early warning model across 32 general wards reduced time to first antibiotic by 1.8 hours in a stepped cluster randomized trial. Alert acceptance by bedside nurses was 78 percent, and no increase in alert fatigue was observed over six months.</AbstractText>
+        </Abstract>
+      </Article>
+    </MedlineCitation>
+    <PubmedData>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">99010005</ArticleId>
+        <ArticleId IdType="doi">10.9999/syn.2026.0005</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+  <!-- 合成图书条目：回归自真实运行发现——esearch 会命中 StatPearls 类图书章节，
+       efetch 以 PubmedBookArticle 返回（结构不同，v0.1.0 曾因此报“efetch 结果缺少 PMID”） -->
+  <PubmedBookArticle>
+    <BookDocument database="pubmed">
+      <PMID Version="1">99010006</PMID>
+      <ArticleIdList><ArticleId IdType="bookaccession">NBK000006</ArticleId></ArticleIdList>
+      <Book book="synthref">
+        <Publisher><PublisherName>Synthetic Publishing</PublisherName><PublisherLocation>Nowhere (XX)</PublisherLocation></Publisher>
+        <BookTitle book="synthref">Synthetic Clinical References</BookTitle>
+        <PubDate><Year>2026</Year><Month>01</Month></PubDate>
+        <Medium>Internet</Medium>
+      </Book>
+      <ArticleTitle book="synthref" part="article-000006">Laboratory Evaluation of Sepsis</ArticleTitle>
+      <Abstract>
+        <AbstractText>This synthetic textbook chapter reviews laboratory tests used in sepsis evaluation.</AbstractText>
+      </Abstract>
+      <AuthorList Type="authors" CompleteYN="Y">
+        <Author ValidYN="Y"><LastName>Reader</LastName><ForeName>Ada</ForeName><Initials>A</Initials></Author>
+      </AuthorList>
+    </BookDocument>
+    <PubmedBookData/>
+  </PubmedBookArticle>
+</PubmedArticleSet>

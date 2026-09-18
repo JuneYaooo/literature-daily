@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="330" viewBox="0 0 1120 330" role="img" aria-labelledby="t d">
+  <title id="t">literature-daily 评测摘要 V1</title>
+  <desc id="d">V1 评测 8/8 用例通过，0 硬失败；27 项单元测试通过；三轮真实迭代；判定为开发 Agent 自评 model_only</desc>
+  <rect width="1120" height="330" fill="#10241E"/>
+  <text x="60" y="58" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="24" font-weight="700" fill="#F2EFE6">评测 V1（2026-09-19 · v0.1.0）</text>
+  <g font-family="PingFang SC, Hiragino Sans GB, sans-serif">
+    <rect x="60" y="90" width="300" height="120" rx="12" fill="#16302A"/>
+    <text x="210" y="150" font-size="44" font-weight="700" fill="#7FD6A4" text-anchor="middle">8/8</text>
+    <text x="210" y="185" font-size="16" fill="#BFEAD2" text-anchor="middle">用例通过 · 0 硬失败</text>
+    <rect x="410" y="90" width="300" height="120" rx="12" fill="#16302A"/>
+    <text x="560" y="150" font-size="44" font-weight="700" fill="#7FD6A4" text-anchor="middle">27/27</text>
+    <text x="560" y="185" font-size="16" fill="#BFEAD2" text-anchor="middle">单元测试（离线夹具）</text>
+    <rect x="760" y="90" width="300" height="120" rx="12" fill="#16302A"/>
+    <text x="910" y="150" font-size="44" font-weight="700" fill="#E8C94B" text-anchor="middle">3 轮</text>
+    <text x="910" y="185" font-size="16" fill="#BFEAD2" text-anchor="middle">真实缺陷 → 修复 → 回归</text>
+    <text x="60" y="252" font-size="17" fill="#BFEAD2">覆盖：离线全管线 · 8 类 XML 边界（无 DOI/无摘要/作者后缀/集体作者/图书章节…）· seen 去重原子写回 ·</text>
+    <text x="60" y="280" font-size="17" fill="#BFEAD2">防抄袭红线（24 词放行 / 25 词拒绝）· 渲染确定性（sha256 双跑一致）· 真实 PubMed 端到端 · 错误码 · Agent 分档质量</text>
+    <text x="60" y="312" font-size="15" fill="#E8A0A0">诚实披露：Agent 分档与导读质量为开发 Agent 自评（model_only），尚未独立人工复核。</text>
+  </g>
+</svg>

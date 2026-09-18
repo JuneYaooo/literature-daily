@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="300" viewBox="0 0 1120 300" role="img" aria-labelledby="t d">
+  <title id="t">literature-daily 医学文献日报</title>
+  <desc id="d">PubMed 关键词订阅、本地降噪排序，每天一份带中文一句话导读的文献日报</desc>
+  <rect width="1120" height="300" fill="#10241E"/>
+  <rect x="0" y="248" width="1120" height="52" fill="#16302A"/>
+  <text x="60" y="118" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="46" font-weight="700" fill="#F2EFE6">医学文献日报 literature-daily</text>
+  <text x="60" y="170" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="22" fill="#BFEAD2">PubMed 关键词订阅 · 增量去重 · AI 分档 · 中文一句话导读日报</text>
+  <text x="60" y="279" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="19" fill="#7FAE9B">本地运行 · 纯 Python 标准库 · 日报只含导读与链接，不复制摘要原文</text>
+  <rect x="820" y="60" width="244" height="150" rx="14" fill="#16302A"/>
+  <rect x="844" y="84" width="196" height="16" rx="8" fill="#E8734A"/>
+  <rect x="844" y="112" width="150" height="12" rx="6" fill="#2E6E5C"/>
+  <rect x="844" y="132" width="172" height="12" rx="6" fill="#E8C94B"/>
+  <rect x="844" y="152" width="128" height="12" rx="6" fill="#5E6672"/>
+  <rect x="844" y="180" width="180" height="8" rx="4" fill="#23453C"/>
+  <text x="942" y="238" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="15" fill="#7FAE9B" text-anchor="middle">必读 / 值得扫一眼 / 可跳过</text>
+</svg>

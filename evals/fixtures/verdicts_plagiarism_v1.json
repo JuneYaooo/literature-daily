@@ -1,0 +1,37 @@
+{
+  "verdicts_note": "坏样例：99010001 的 one_liner 逐字照抄了该篇（合成）摘要开头 30 余词，用于验证渲染器的防抄袭红线（退出码 4、不落盘）。",
+  "verdicts": [
+    {
+      "pmid": "99010001",
+      "bucket": "must_read",
+      "one_liner": "Early warning of clinical deterioration remains challenging in intensive care units. We developed a gradient boosted decision tree trained on the first six hours of vital signs and laboratory results.",
+      "reason": "直接搬摘要。"
+    },
+    {
+      "pmid": "99010002",
+      "bucket": "worth_a_look",
+      "one_liner": "降钙素原下降速度或可指导呼吸机相关肺炎的抗生素疗程缩短。",
+      "reason": "标志物方向。"
+    },
+    {
+      "pmid": "99010003",
+      "bucket": "skip"
+    },
+    {
+      "pmid": "99010004",
+      "bucket": "worth_a_look",
+      "one_liner": "多中心儿童研究评估生物标志物组合识别脓毒性休克的价值。",
+      "reason": "多中心设计。"
+    },
+    {
+      "pmid": "99010005",
+      "bucket": "must_read",
+      "one_liner": "普通病房的脓毒症预警模型实施研究显示抗生素启动时间提前。",
+      "reason": "落地证据。"
+    },
+    {
+      "pmid": "99010006",
+      "bucket": "skip"
+    }
+  ]
+}

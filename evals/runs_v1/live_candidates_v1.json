@@ -1,0 +1,485 @@
+{
+ "schema_version": "1.0",
+ "tool": "literature-daily",
+ "run_date": "2026-09-19",
+ "offline": false,
+ "window": {
+  "datetype": "edat",
+  "reldate": 7,
+  "retmax": 6
+ },
+ "research_interests": "脓毒症（sepsis）生物标志物、ICU 机器学习早期预警评分，以及可在床旁落地的预测模型验证研究",
+ "keywords": [
+  {
+   "keyword": "sepsis biomarker",
+   "count": 33,
+   "returned": 6
+  },
+  {
+   "keyword": "machine learning sepsis",
+   "count": 12,
+   "returned": 6
+  },
+  {
+   "keyword": "early warning score",
+   "count": 14,
+   "returned": 6
+  }
+ ],
+ "stats": {
+  "esearch_hits": 59,
+  "union": 17,
+  "already_seen": 0,
+  "new": 17,
+  "requests": 4
+ },
+ "candidates": [
+  {
+   "pmid": "42756472",
+   "title": "Dynamic Changes of Neutrophil Nuclear Membrane CD63 as a Potential Biomarker for Early Adjunctive Diagnosis and Prognostic Evaluation of Sepsis in Critically Ill Patients: A Prospective Cohort Study.",
+   "authors": [
+    "Xingxin Gao",
+    "Min Zhang",
+    "Linbin Li",
+    "Haihua Lyu",
+    "Zhihao Liu",
+    "Xucheng Wei",
+    "Dehui Li",
+    "Yiming Shao"
+   ],
+   "journal": "MedComm",
+   "journal_iso": "MedComm (2020)",
+   "pubdate": "2026 Oct",
+   "doi": "10.1002/mco2.71007",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42756472/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42757709",
+   "title": "Incidence and risk factors for postpartum infections: A Norwegian cohort study, 2012-2020.",
+   "authors": [
+    "Kjerstine Røe",
+    "Ingvil Krarup Sørbye",
+    "Cecilie Fredvik Torkildsen",
+    "Anders Engeland",
+    "Hilde Marie Engjom",
+    "Roy Miodini Nilsen",
+    "Kari Klungsøyr"
+   ],
+   "journal": "Acta obstetricia et gynecologica Scandinavica",
+   "journal_iso": "Acta Obstet Gynecol Scand",
+   "pubdate": "2026 Sep 18",
+   "doi": "10.1111/aogs.70355",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42757709/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42751007",
+   "title": "Artificial intelligence and machine learning in transplantation surgery care pathway.",
+   "authors": [
+    "Kavyesh Vivek",
+    "Vassilios Papalois"
+   ],
+   "journal": "World journal of transplantation",
+   "journal_iso": "World J Transplant",
+   "pubdate": "2026 Sep 18",
+   "doi": "10.5500/wjt.122433",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42751007/",
+   "pubtypes": [
+    "Journal Article",
+    "Review"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker",
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42750968",
+   "title": "Persistent elevation of procalcitonin following resolution of presumed community-acquired pneumonia revealing sporadic medullary thyroid carcinoma.",
+   "authors": [
+    "Shin Yee Tang",
+    "Shaikh Abdul Matin Mattar"
+   ],
+   "journal": "Archive of clinical cases",
+   "journal_iso": "Arch Clin Cases",
+   "pubdate": "2026",
+   "doi": "10.22551/2026.52.1303.10346",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42750968/",
+   "pubtypes": [
+    "Case Reports",
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42750136",
+   "title": "Pathological Signal-Responsive Nanoplatforms for Sepsis: Integrating Biomarker Sensing With Spatiotemporal Drug Delivery and Immunomodulation.",
+   "authors": [
+    "Yukun Liu",
+    "Kang Wang",
+    "Kwet Kyawl Yan",
+    "Zhikai Xu",
+    "Xuan Zhao",
+    "Xiangjun Bai",
+    "Zhanfei Li",
+    "Yuchang Wang"
+   ],
+   "journal": "Advanced science (Weinheim, Baden-Wurttemberg, Germany)",
+   "journal_iso": "Adv Sci (Weinh)",
+   "pubdate": "2026 Sep 16",
+   "doi": "10.1002/advs.77718",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42750136/",
+   "pubtypes": [
+    "Journal Article",
+    "Review"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42756334",
+   "title": "Unravelling Ferroptosis in Sepsis: A Comprehensive Integrative Transcriptomic Analysis Across Age and Disease Severity.",
+   "authors": [
+    "Miguel Victor Bringel Sales",
+    "Helder Imoto Nakaya",
+    "Fernando de Queiroz Cunha",
+    "Antonio Edson Rocha Oliveira"
+   ],
+   "journal": "Bioinformatics and biology insights",
+   "journal_iso": "Bioinform Biol Insights",
+   "pubdate": "2026",
+   "doi": "10.1177/11779322261447645",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42756334/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42753937",
+   "title": "MEDAL: Sequential adapter learning for privacy-preserving multicenter clinical language models.",
+   "authors": [
+    "Ahmed Bakr",
+    "Augusto Garcia-Agundez",
+    "Travis Atkison",
+    "Vivek A Rudrapatna",
+    "Trinabh Gupta"
+   ],
+   "journal": "Journal of biomedical informatics",
+   "journal_iso": "J Biomed Inform",
+   "pubdate": "2026 Sep 17",
+   "doi": "10.1016/j.jbi.2026.105101",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42753937/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42753195",
+   "title": "AI-Based Sepsis Prediction in Hospitalized Adults: Systematic Review, Subgroup Meta-Analysis, and Contextual Analysis of Clinical Burden.",
+   "authors": [
+    "Gyeong Min Lee",
+    "Joo-Yun Won",
+    "Eun Young Cho",
+    "Ji-Hyun Kim",
+    "Kwang Joon Kim",
+    "Yu Seung Lee",
+    "Hyun Jun Lee",
+    "Jae Hyun Kim"
+   ],
+   "journal": "Journal of medical Internet research",
+   "journal_iso": "J Med Internet Res",
+   "pubdate": "2026 Sep 17",
+   "doi": "10.2196/95665",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42753195/",
+   "pubtypes": [
+    "Journal Article",
+    "Systematic Review",
+    "Meta-Analysis",
+    "Review"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42752685",
+   "title": "Bridging machine learning and evolutionary optimization of threshold specific dosages of Nisin to suppress MRSA biofilm.",
+   "authors": [
+    "Debolina Ganguly",
+    "Ritwik Roy",
+    "Purav Mondal",
+    "Sharmistha Das",
+    "Prosun Tribedi",
+    "Poulomi Chakraborty",
+    "Payel Paul",
+    "Soumita Das",
+    "Bhaskar Narayan Chaudhuri",
+    "Sarita Sarkar"
+   ],
+   "journal": "Antonie van Leeuwenhoek",
+   "journal_iso": "Antonie Van Leeuwenhoek",
+   "pubdate": "2026 Sep 17",
+   "doi": "10.1007/s10482-026-02423-6",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42752685/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42736406",
+   "title": "Automated CT-derived visceral-to-subcutaneous fat ratio as a prognostic imaging biomarker for mortality in sepsis.",
+   "authors": [
+    "Lin Fu",
+    "Xinyi Chen",
+    "Songqiao Liu",
+    "Youyong Kong",
+    "Hongxuan Li",
+    "Xin Chen",
+    "Ying Cui",
+    "Jing Ye",
+    "Xin-Gui Peng"
+   ],
+   "journal": "European radiology",
+   "journal_iso": "Eur Radiol",
+   "pubdate": "2026 Sep 14",
+   "doi": "10.1007/s00330-026-12877-x",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42736406/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42735002",
+   "title": "Machine Learning-Based Prediction of Culture-Confirmed Neonatal Sepsis in a Tertiary Neonatal Intensive Care Unit: Retrospective Cohort Study.",
+   "authors": [
+    "Eman Badran",
+    "Oraib Al-Smadi",
+    "Loiy T Algazo",
+    "Alaa T Al Ghazo",
+    "Arwa Al Anber",
+    "Areej Sharaqa",
+    "Lena Abu-Argoub",
+    "Shatha Al Jaberi",
+    "Abdulrahman Alhanbali",
+    "Taimein Yacoub",
+    "Shahd Rihan",
+    "Hala Al-Jaberi"
+   ],
+   "journal": "JMIR medical informatics",
+   "journal_iso": "JMIR Med Inform",
+   "pubdate": "2026 Sep 14",
+   "doi": "10.2196/88732",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42735002/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42751431",
+   "title": "Performance of Pediatric Early Warning Score and physician gestalt in predicting adverse events among critically ill patients in an Emergency Department in Tanzania.",
+   "authors": [
+    "Irene A Kindole",
+    "Humphrey G Medarakini",
+    "Alphonce N Simbila",
+    "Christine A Kindole",
+    "Peter P Kunambi",
+    "Evelyne G Mapunda",
+    "Said S Kilindimo",
+    "Ellen J Weber"
+   ],
+   "journal": "African journal of emergency medicine : Revue africaine de la medecine d'urgence",
+   "journal_iso": "Afr J Emerg Med",
+   "pubdate": "2026 Dec",
+   "doi": "10.1016/j.afjem.2026.101008",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42751431/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42755392",
+   "title": "Research on Risk Classification of Online Public Opinion in Emergencies Based on FHCO Algorithm.",
+   "authors": [
+    "Xing Huang",
+    "Xiaoshuang Zhuo"
+   ],
+   "journal": "Risk analysis : an official publication of the Society for Risk Analysis",
+   "journal_iso": "Risk Anal",
+   "pubdate": "2026 Oct",
+   "doi": "10.1111/risa.70358",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42755392/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42725545",
+   "title": "From Plan to Practice: Embedding Safety Planning in Inpatient Mental Health Care.",
+   "authors": [
+    "Erin Farmer",
+    "Marianne Wyder",
+    "Nahid Choudhury",
+    "Sarah Cox",
+    "Nicola Geffen",
+    "Jeremy Anson",
+    "Nomthandazo Masuku",
+    "Emma Lakin",
+    "Manaan Kar Ray"
+   ],
+   "journal": "International journal of mental health nursing",
+   "journal_iso": "Int J Ment Health Nurs",
+   "pubdate": "2026 Oct",
+   "doi": "10.1111/inm.70345",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42725545/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42747424",
+   "title": "Comparison of Performance of Publicly Available Polygenic Risk Scores to Predict Clinically Actionable Coronary Artery Calcium Scores: The BioHEART-CT Cohort.",
+   "authors": [
+    "Michael P Gray",
+    "Dario Strbenac",
+    "Daniel Brieger",
+    "Suzanne Avis",
+    "Sina Fathieh",
+    "Daniel G MacArthur",
+    "Pradeep Natarajan",
+    "Aniruddh Patel",
+    "Ellis Patrick",
+    "Joseph Powell",
+    "Owen Tang",
+    "Stephen T Vernon",
+    "Dantong Zhu",
+    "Jean Y H Yang",
+    "Gemma A Figtree"
+   ],
+   "journal": "European journal of preventive cardiology",
+   "journal_iso": "Eur J Prev Cardiol",
+   "pubdate": "2026 Sep 16",
+   "doi": "10.1093/eurjpc/zwag480",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42747424/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42742186",
+   "title": "Association between early prehospital administration antibiotic and 28-day mortality in sepsis.",
+   "authors": [
+    "Karn Suttapanit",
+    "Pannita Deeiad",
+    "Siriporn Damdin",
+    "Damon C Scales",
+    "Praphaphorn Supatanakij"
+   ],
+   "journal": "Prehospital emergency care",
+   "journal_iso": "Prehosp Emerg Care",
+   "pubdate": "2026 Sep 15",
+   "doi": "10.1080/10903127.2026.2733964",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42742186/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "37603649",
+   "title": "Laboratory Evaluation of Sepsis",
+   "authors": [
+    "Muhammad Zubair",
+    "Sharven Taghavi"
+   ],
+   "journal": "图书条目",
+   "journal_iso": "",
+   "pubdate": "",
+   "doi": null,
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/37603649/",
+   "pubtypes": [
+    "Book"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  }
+ ],
+ "publishing_note": "本文件为 2026-09-19 真实运行的候选清单，摘要字段已本地脱敏（abstract_redacted=true），避免转载出版方受版权保护的摘要原文；元数据（标题/作者/期刊/日期/DOI）依 NCBI 使用政策保留。"
+}

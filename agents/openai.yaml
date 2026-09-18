@@ -1,0 +1,7 @@
+interface:
+  display_name: "医学文献日报"
+  short_description: "PubMed 关键词订阅，中文一句话导读的文献日报"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#2E6E5C"
+  default_prompt: "Use $literature-daily to fetch this week's new PubMed papers for my keywords, triage them against my research interests, and render a daily digest with one-line Chinese notes."

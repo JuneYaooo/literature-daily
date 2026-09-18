@@ -1,0 +1,163 @@
+{
+ "schema_version": "1.0",
+ "tool": "literature-daily",
+ "run_date": "2026-09-19",
+ "offline": true,
+ "window": {
+  "datetype": "edat",
+  "reldate": 7,
+  "retmax": 4
+ },
+ "research_interests": "脓毒症（sepsis）生物标志物、ICU 机器学习早期预警与床旁落地验证",
+ "keywords": [
+  {
+   "keyword": "sepsis biomarker",
+   "count": 47,
+   "returned": 4
+  },
+  {
+   "keyword": "machine learning sepsis",
+   "count": 23,
+   "returned": 2
+  },
+  {
+   "keyword": "early warning score",
+   "count": 88,
+   "returned": 2
+  }
+ ],
+ "stats": {
+  "esearch_hits": 158,
+  "union": 6,
+  "already_seen": 0,
+  "new": 6,
+  "requests": 4
+ },
+ "candidates": [
+  {
+   "pmid": "99010001",
+   "title": "Machine learning predicts intensive care mortality from the first six hours of vital signs",
+   "authors": [
+    "Wei Zhang",
+    "John Smith, Jr",
+    "Adaeze Okafor"
+   ],
+   "journal": "Critical Care Medicine",
+   "journal_iso": "Crit Care Med",
+   "pubdate": "2026 Sep 12",
+   "doi": "10.9999/syn.2026.0001",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/99010001/",
+   "pubtypes": [
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract": "Early warning of clinical deterioration remains challenging in intensive care units. We developed a gradient boosted decision tree trained on the first six hours of vital signs and laboratory results from 42118 admissions to predict in-hospital mortality. In temporal validation the model achieved an area under the receiver operating characteristic curve of 0.86, compared with 0.74 for the conventional early warning score. External validation in two hospitals confirmed calibration. Our results suggest that machine learning applied to routine electronic health record data can identify high risk patients several hours before clinical deterioration.",
+   "matched_keywords": [
+    "sepsis biomarker"
+   ]
+  },
+  {
+   "pmid": "99010002",
+   "title": "Serum procalcitonin kinetics guide antibiotic stewardship in ventilator-associated pneumonia",
+   "authors": [
+    "Marta Lopez",
+    "Enrico Rossi"
+   ],
+   "journal": "Intensive Care Medicine",
+   "journal_iso": "Intensive Care Med",
+   "pubdate": "2026 Sep 10",
+   "doi": null,
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/99010002/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": "Procalcitonin kinetics over the first three days of therapy were associated with shorter antibiotic courses in a retrospective cohort of 1,204 ventilator-associated pneumonia patients. A decline of at least thirty percent by day three identified patients who could safely stop antibiotics.",
+   "matched_keywords": [
+    "sepsis biomarker",
+    "machine learning sepsis"
+   ]
+  },
+  {
+   "pmid": "99010003",
+   "title": "Delirium screening bundles in the post anesthesia care unit: a stepped wedge trial",
+   "authors": [
+    "Li Chen",
+    "Hong Wang",
+    "Katrin Grunberg"
+   ],
+   "journal": "Anesthesia & Analgesia",
+   "journal_iso": "Anesth Analg",
+   "pubdate": "2026 Sep-Oct",
+   "doi": "10.9999/syn.2026.0003",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/99010003/",
+   "pubtypes": [
+    "Journal Article",
+    "Randomized Controlled Trial"
+   ],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ]
+  },
+  {
+   "pmid": "99010006",
+   "title": "Laboratory Evaluation of Sepsis",
+   "authors": [
+    "Ada Reader"
+   ],
+   "journal": "Synthetic Clinical References",
+   "journal_iso": "Synthetic Clinical References",
+   "pubdate": "202601",
+   "doi": null,
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/99010006/",
+   "pubtypes": [
+    "Book"
+   ],
+   "abstract": "This synthetic textbook chapter reviews laboratory tests used in sepsis evaluation.",
+   "matched_keywords": [
+    "sepsis biomarker"
+   ]
+  },
+  {
+   "pmid": "99010004",
+   "title": "Biomarker panels for septic shock recognition in children: a multicenter prospective study",
+   "authors": [
+    "Pediatric Sepsis Consortium"
+   ],
+   "journal": "Pediatrics",
+   "journal_iso": "Pediatrics",
+   "pubdate": "2026",
+   "doi": "10.9999/syn.2026.0004",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/99010004/",
+   "pubtypes": [
+    "Journal Article",
+    "Multicenter Study"
+   ],
+   "abstract": "BACKGROUND: Pediatric septic shock is difficult to recognize early. METHODS: We prospectively enrolled 3,102 children across 18 emergency departments and compared a three-biomarker panel with single markers. RESULTS: The panel improved sensitivity from 0.71 to 0.84 without loss of specificity. CONCLUSIONS: A simple biomarker panel may support earlier recognition of pediatric septic shock.",
+   "matched_keywords": [
+    "machine learning sepsis",
+    "early warning score"
+   ]
+  },
+  {
+   "pmid": "99010005",
+   "title": "Deep learning early warning for sepsis on general wards: a stepped cluster randomized implementation",
+   "authors": [
+    "Sho Tanaka",
+    "Katrin Mueller"
+   ],
+   "journal": "npj Digital Medicine",
+   "journal_iso": "NPJ Digit Med",
+   "pubdate": "2026 Sep 8",
+   "doi": "10.9999/syn.2026.0005",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/99010005/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "abstract": "Deploying a sepsis early warning model across 32 general wards reduced time to first antibiotic by 1.8 hours in a stepped cluster randomized trial. Alert acceptance by bedside nurses was 78 percent, and no increase in alert fatigue was observed over six months.",
+   "matched_keywords": [
+    "early warning score"
+   ]
+  }
+ ]
+}

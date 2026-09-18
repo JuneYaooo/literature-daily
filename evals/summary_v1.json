@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "status": "completed",
+  "dimensions": [
+    "project_understanding",
+    "real_effect",
+    "iteration_improvement",
+    "effect_evaluation",
+    "showcase_integrity"
+  ],
+  "conditions": {
+    "baseline": {
+      "judgment_count": 0,
+      "unique_case_count": 0,
+      "pass_count": 0,
+      "pass_rate": null,
+      "pass_rate_wilson_95": null,
+      "critical_failure_count": 0,
+      "dimension_means_0_to_4": {
+        "project_understanding": null,
+        "real_effect": null,
+        "iteration_improvement": null,
+        "effect_evaluation": null,
+        "showcase_integrity": null
+      }
+    },
+    "skill": {
+      "judgment_count": 8,
+      "unique_case_count": 8,
+      "pass_count": 8,
+      "pass_rate": 1.0,
+      "pass_rate_wilson_95": [
+        0.6756,
+        1.0
+      ],
+      "critical_failure_count": 0,
+      "dimension_means_0_to_4": {
+        "project_understanding": 3.75,
+        "real_effect": 4.0,
+        "iteration_improvement": 3.25,
+        "effect_evaluation": 3.375,
+        "showcase_integrity": 3.25
+      }
+    }
+  },
+  "skill_minus_baseline_pass_rate": null,
+  "interpretation_note": "A critical failure always fails that judgment; pass otherwise requires all atomic checks green (script layer) or a mean dimension score of at least 3.0/4.0 (agent layer). 判定为开发 Agent 自评（model_only）。"
+}
