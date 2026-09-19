@@ -62,7 +62,7 @@ skip 可只给 pmid + bucket。渲染前强制校验：one_liner/reason 中出�
 ## 测试与评测复现
 
 ```bash
-python3 -m unittest discover tests                                        # 27 项，全程离线
+python3 -m unittest discover tests                                        # 29 项，全程离线
 python3 scripts/fetch_pubmed.py evals/fixtures/config_offline_v1.json \
     -o /tmp/candidates.json --offline evals/fixtures/offline_v1 --date 2026-09-19
 python3 scripts/render_digest.py /tmp/candidates.json \

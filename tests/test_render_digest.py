@@ -94,6 +94,18 @@ class RenderTests(unittest.TestCase):
             rd.main([str(self.candidates), str(FIX / "verdicts_good_v1.json"), "-o", str(out)])
         self.assertEqual(out_a.read_bytes(), out_b.read_bytes())
 
+    def test_bucket_order_follows_candidates_not_verdict_order(self):
+        """同一 bucket 内按候选清单顺序渲染，不随 verdicts 条目顺序翻转而变。"""
+        verdicts = json.loads((FIX / "verdicts_good_v1.json").read_text(encoding="utf-8"))
+        shuffled = {"verdicts": list(reversed(verdicts["verdicts"]))}
+        path = self.tmp / "v_shuffled.json"
+        path.write_text(json.dumps(shuffled, ensure_ascii=False), encoding="utf-8")
+        out_a, out_b = self.tmp / "order_a.md", self.tmp / "order_b.md"
+        self.assertEqual(rd.main([str(self.candidates), str(FIX / "verdicts_good_v1.json"),
+                                  "-o", str(out_a)]), 0)
+        self.assertEqual(rd.main([str(self.candidates), str(path), "-o", str(out_b)]), 0)
+        self.assertEqual(out_a.read_bytes(), out_b.read_bytes())
+
     def test_missing_one_liner_for_must_read(self):
         verdicts = {"verdicts": [{"pmid": "99010001", "bucket": "must_read",
                                   "one_liner": "", "reason": "r"}]}

@@ -124,6 +124,20 @@ class OfflineRunTests(unittest.TestCase):
         self.assertEqual(data["stats"]["requests"], 3)  # 全部已见 → 不再调 efetch
         self.assertEqual(self.seen.read_text(encoding="utf-8"), before)
 
+    def test_seen_duplicates_collapsed(self):
+        """seen 文件里被手工弄出的重复 PMID 在写回时收敛为唯一排序列表。"""
+        seen = self.tmp / "seen_dup.json"
+        seen.write_text(json.dumps({"version": 1, "updated": "2026-09-18",
+                                    "pmids": ["99010002", "99010002"]}),
+                        encoding="utf-8")
+        out = self.tmp / "candidates_dup.json"
+        self.assertEqual(fp.main([str(FIX / "config_offline_v1.json"), "--seen", str(seen),
+                                  "-o", str(out), "--offline", str(OFFLINE),
+                                  "--date", RUN_DATE]), 0)
+        data = json.loads(seen.read_text(encoding="utf-8"))
+        self.assertEqual(data["pmids"], ["99010001", "99010002", "99010003",
+                                         "99010004", "99010005", "99010006"])
+
     def test_determinism_sha256(self):
         seen_a, seen_b = self.tmp / "a.json", self.tmp / "b.json"
         for source in (seen_a, seen_b):

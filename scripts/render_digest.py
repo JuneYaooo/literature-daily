@@ -169,6 +169,12 @@ def render(candidates: dict, entries: list[dict]) -> str:
     interests = str(candidates.get("research_interests") or "").strip()
     keywords = candidates.get("keywords") or []
     reldate = (candidates.get("window") or {}).get("reldate", "?")
+    # 同 bucket 内按候选清单顺序（esearch pub_date 新→旧）稳定排序，
+    # 不随 verdicts 文件里条目顺序的偶然差异而变化
+    candidate_order = {str(row.get("pmid")): index for index, row
+                       in enumerate(candidates.get("candidates") or [])}
+    entries = sorted(entries, key=lambda item: candidate_order.get(
+        str(item["row"].get("pmid")), len(candidate_order)))
 
     lines = [f"# 医学文献日报 · {run_date}", ""]
     counts = {b: sum(1 for e in entries if e["entry"]["bucket"] == b) for b in BUCKETS}

@@ -1,0 +1,65 @@
+# literature-daily 第二次真实联网回归 · 2026-09-19（晚于首次运行数小时）· macOS arm64 · Python 3.13.2
+# 沿用首次真实运行写下的 data/seen.json（17 篇 PMID，见 runs_v1/live_transcript.txt）
+$ python3 scripts/fetch_pubmed.py config.example.json --seen data/seen.json -o /tmp/candidates_v2.json --date 2026-09-19
+[g][fetch] 关键词 3 个 · reldate=7 天 · retmax=6 · PubMed（间隔 1.1s）
+[g][esearch] “sepsis biomarker” → 近 7 天命中 33，取回 6
+[g][esearch] “machine learning sepsis” → 近 7 天命中 12，取回 6
+[g][esearch] “early warning score” → 近 7 天命中 14，取回 6
+[g][dedup] 本轮去重前 17 篇 · 已看过跳过 17 篇 · 新增 0 篇
+[g][done] 候选清单 → /tmp/candidates_v2.json
+[g][done] seen 已原子写回 → data/seen.json（累计 17 篇）
+
+# 同日复跑验证去重稳定性（本轮=对首次运行而言的第二次；结果 17 篇已见、0 新增、3 次 esearch）
+$ python3 scripts/fetch_pubmed.py config.example.json --seen data/seen.json -o /tmp/candidates_v2.json --date 2026-09-19（输出见上，共 3 次请求）
+[g][fetch] 关键词 3 个 · reldate=7 天 · retmax=6 · PubMed（间隔 1.1s）
+[g][esearch] “sepsis biomarker” → 近 7 天命中 33，取回 6
+[g][esearch] “machine learning sepsis” → 近 7 天命中 12，取回 6
+[g][esearch] “early warning score” → 近 7 天命中 14，取回 6
+[g][dedup] 本轮去重前 17 篇 · 已看过跳过 17 篇 · 新增 0 篇
+[g][done] 候选清单 → /tmp/candidates_v2.json
+[g][done] seen 已原子写回 → data/seen.json（累计 17 篇）
+
+# edat 时间窗下界：同一关键词（sepsis biomarker）reldate=1、retmax=3、一次性 seen（不污染 data/seen.json）
+$ python3 scripts/fetch_pubmed.py /tmp/config_reldate1.json --seen /tmp/seen_w1.json -o /tmp/out_w1.json --date 2026-09-19
+[g][fetch] 关键词 1 个 · reldate=1 天 · retmax=3 · PubMed（间隔 1.1s）
+[g][esearch] “sepsis biomarker” → 近 1 天命中 11，取回 3
+[g][dedup] 本轮去重前 3 篇 · 已看过跳过 0 篇 · 新增 3 篇
+[g][efetch] 取回 3 篇元数据与摘要
+[g][done] 候选清单 → /tmp/out_w1.json
+[g][done] seen 已原子写回 → /tmp/seen_w1.json（累计 3 篇）
+
+# edat 时间窗上界：reldate=30、retmax=3（命中数单调 11 → 33 → 147；窗口生效）
+$ python3 scripts/fetch_pubmed.py /tmp/config_reldate30.json --seen /tmp/seen_w30.json -o /tmp/out_w30.json --date 2026-09-19
+[g][fetch] 关键词 1 个 · reldate=30 天 · retmax=3 · PubMed（间隔 1.1s）
+[g][esearch] “sepsis biomarker” → 近 30 天命中 147，取回 3
+[g][dedup] 本轮去重前 3 篇 · 已看过跳过 0 篇 · 新增 3 篇
+[g][efetch] 取回 3 篇元数据与摘要
+[g][done] 候选清单 → /tmp/out_w30.json
+[g][done] seen 已原子写回 → /tmp/seen_w30.json（累计 3 篇）
+
+# README 日增口径复核第一跑（config 误沿用 reldate=7，得到 7 天窗口总量 33,806）
+$ python3 scripts/fetch_pubmed.py /tmp/config_daycount.json -o /tmp/out_day.json --date 2026-09-19
+[g][fetch] 关键词 1 个 · reldate=7 天 · retmax=1 · PubMed（间隔 1.1s）
+[g][esearch] “journal article[pt]” → 近 7 天命中 33806，取回 1
+[g][dedup] 本轮去重前 1 篇 · 已看过跳过 0 篇 · 新增 1 篇
+[g][efetch] 取回 1 篇元数据与摘要
+[g][done] 候选清单 → /tmp/out_day.json
+
+# README 日增口径复核（修正为 reldate=1）：journal article[pt] 近 1 天命中 8,595（同日早间实测 7,773，入库持续增长，口径自洽）
+$ python3 scripts/fetch_pubmed.py /tmp/config_daycount.json -o /tmp/out_day1.json --date 2026-09-19（config 已改 reldate=1）
+[g][fetch] 关键词 1 个 · reldate=1 天 · retmax=1 · PubMed（间隔 1.1s）
+[g][esearch] “journal article[pt]” → 近 1 天命中 8595，取回 1
+[g][dedup] 本轮去重前 1 篇 · 已看过跳过 0 篇 · 新增 1 篇
+[g][efetch] 取回 1 篇元数据与摘要
+[g][done] 候选清单 → /tmp/out_day1.json
+
+# 结论（2026-09-19 第二次真实联网回归，共 11 次请求、间隔 1.1s、约 0.9 req/s）：
+# 1) seen 跨运行去重：首次运行写下的 17 篇 PMID 全部命中 seen（已看过跳过 17），新增 0，未调 efetch；
+#    复跑结果与首次运行 transcript 完全同构（命中 33/12/14、去重前 17）。data/seen.json 内容未变（仍 17 篇）。
+# 2) edat 时间窗：reldate=1/7/30 命中数 11/33/147 单调递增，窗口参数真实生效；
+#    reldate=1 的 top-3（42756472/42757709/42751007）恰为首次运行 kw1 候选前三、全部在 seen 中。
+# 3) 注意：reldate=30 时 sort=pub_date 的前三名是提前定档的 ahead-of-print（pubdate 2026 Dec/Nov 15/Oct 15，
+#    PMID 42640005/42617202/42633878，均不在 7 天窗口）——扩窗 + pub_date 排序会把"刊期更靠后"的条目排前，
+#    edat 窗口语义本身不受影响（已记入 references/eutils-notes.md）。
+# 4) 日增口径：journal article[pt] 近 1 天命中 8,595（同日晚间）≥ README 记载的 7,773（同日早间），声明自洽。
+

@@ -15,7 +15,7 @@
 | `datetype` | `edat` | Entrez 入库日期，最适合增量（`pdat` 是出版日期，对 ahead-of-print 会漏检） |
 | `reldate` | 默认 7 | 最近 n 天；与 `mindate/maxdate` 二选一（后者必须成对，格式 YYYY/MM/DD） |
 | `retmax` | 默认 15 | 单次取回上限，最大 10,000；命中数在 `count` 字段，可发现截断 |
-| `sort` | `pub_date` | 按日期新→旧；默认 Best Match 不适合日报 |
+| `sort` | `pub_date` | 按日期新→旧；默认 Best Match 不适合日报。注意排序依据是**出版日期**（含提前定档的 ahead-of-print 刊期，如 "2026 Dec"），把 reldate 调得远大于 7 时这类条目会排到最前（2026-09-19 二次回归实测）；edat 窗口语义不受影响 |
 | `retmode` | `json` | 解析 `esearchresult.count` 与 `esearchresult.idlist` |
 
 ## efetch.fcgi（批量取元数据与摘要）

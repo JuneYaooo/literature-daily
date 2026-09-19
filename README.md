@@ -87,6 +87,15 @@ sha256 一致）、真实 PubMed 端到端、错误码与 Agent 分档质量九�
 
 - 逐题判断：[judgments_v1.jsonl](evals/judgments_v1.jsonl)；汇总：[summary_v1.json](evals/summary_v1.json)
 - 真实产物与哈希：[evals/runs_v1/](evals/runs_v1/)
+
+**2026-09-19 第二次联网回归（v0.1.1，11 次请求，间隔 1.1s）**：沿用首次真实运行写下的
+seen 真实复抓——17 篇**全部命中 seen 去重、0 新增、不再调 efetch**；reldate=1/7/30 的
+命中数 11→33→147 单调递增，edat 增量窗口真实生效；`journal article[pt]` 近 1 天命中
+8,595（≥ 同日早间记载的 7,773，日增口径自洽）。顺带把渲染分组排序固定为"同档内按候选
+清单顺序"、seen 写回收敛重复项，单元测试增至 **29 项**。逐字记录见
+[live_transcript_v2.txt](evals/runs_v1/live_transcript_v2.txt)，结构化结论见
+[live_regression2_2026-09-19.json](evals/runs_v1/live_regression2_2026-09-19.json)。
+
 - **诚实披露**：README 首屏截图与日报节选来自 2026-09-19 的真实 PubMed 调用
   （入库产物已把摘要字段脱敏，避免转载出版方版权内容）；评测夹具全部为合成样本
   （PMID 99010001–99010006 为占位编号）。真实运行还暴露了一个真实缺陷——PubMed 图书

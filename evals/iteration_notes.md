@@ -36,6 +36,27 @@
 - 处置：默认间隔定为 1.1s（实测约 0.9 req/s），`--sleep` 可调但强制下限 0.4s
   （NCBI 无 key 3 req/s 的硬底线），低于下限打印警告并钳制。两个约束同时满足。
 
+## 回归 4（2026-09-19 第二次联网回归，v0.1.1）：seen 跨运行去重与 edat 时间窗复核
+
+- 过程：沿用首次真实运行写下的 `data/seen.json`（17 篇），用 config.example.json 再跑一次
+  真实抓取（3 次 esearch、间隔 1.1s）：命中仍为 33/12/14，**17 篇全部命中 seen、新增 0、
+  未调 efetch**，seen 文件内容不变——"上次见过的不再出现"在真实数据上二次成立。
+- edat 时间窗：同一关键词 reldate=1/7/30 各跑一次小 retmax，命中数 11→33→147 单调递增，
+  窗口参数真实生效；reldate=1 的 top-3 恰为首次运行 kw1 候选前三且全部在 seen 中。
+- 新观察（非缺陷，已写入 eutils-notes）：reldate=30 且 `sort=pub_date` 时前三名是提前定档的
+  ahead-of-print（pubdate 2026 Dec/Nov 15/Oct 15，均不在 7 天窗口）——扩窗会把"刊期更靠后"
+  的条目排到最前；edat 窗口语义本身不受影响，7 天默认窗口下无此现象。
+- 日增口径复核：`journal article[pt]` 近 1 天命中 8,595（同日晚间）≥ README 记载的
+  7,773（同日早间），声明自洽。
+- 顺带加固两处（行为不变于既有产物，全部 sha256 复核一致）：
+  1. 渲染分组排序改为**同 bucket 内按候选清单顺序**（esearch pub_date 新→旧），不再随
+     verdicts 文件条目顺序的偶然差异而变；新增测试 `test_bucket_order_follows_candidates_not_verdict_order`。
+  2. seen 写回时收敛重复 PMID（`sorted(set(...))`），手工编辑留下的重复项不会累积；
+     新增测试 `test_seen_duplicates_collapsed`；并消掉关键词匹配循环里的重复 `set()` 构造。
+- 证据：[live_transcript_v2.txt](runs_v1/live_transcript_v2.txt)（逐字）、
+  [live_regression2_2026-09-19.json](runs_v1/live_regression2_2026-09-19.json)（结构化结论，
+  共 11 次请求）；哈希见 [hashes_v2.json](runs_v1/hashes_v2.json)。
+
 ## 已知限制（未在本次修复）
 
 - 相关性分档与中文导读是 AI 生成（model_only 自评），未经医学信息学背景的人工复核；

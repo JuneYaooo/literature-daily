@@ -366,11 +366,12 @@ def fetch(config_path: Path, seen_path: Path | None, output_path: Path | None,
     if new_pmids:
         print(f"[efetch] 取回 {len(articles)} 篇元数据与摘要")
 
+    new_set = set(new_pmids)
     keyword_hits: dict[str, list[str]] = {}
     for result in esearch_results:
         keyword_hits.setdefault(result["keyword"], [])
         for pmid in result["pmids"]:
-            if pmid in set(new_pmids) and pmid not in keyword_hits[result["keyword"]]:
+            if pmid in new_set and pmid not in keyword_hits[result["keyword"]]:
                 keyword_hits[result["keyword"]].append(pmid)
 
     candidates = []
@@ -409,8 +410,9 @@ def fetch(config_path: Path, seen_path: Path | None, output_path: Path | None,
         sys.stdout.write(rendered)
 
     if seen_path is not None:
-        write_seen_atomic(seen_path, seen + new_pmids, run_date)
-        print(f"[done] seen 已原子写回 → {seen_path}（累计 {len(seen) + len(new_pmids)} 篇）")
+        merged = sorted(set(seen).union(new_pmids))  # 去重：seen 里被手工弄出的重复项也收敛
+        write_seen_atomic(seen_path, merged, run_date)
+        print(f"[done] seen 已原子写回 → {seen_path}（累计 {len(merged)} 篇）")
     return 0
 
 

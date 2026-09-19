@@ -1,0 +1,51 @@
+{
+ "schema_version": "1.0",
+ "run_date": "2026-09-19",
+ "purpose": "第二次真实联网回归：seen 跨运行去重 + edat 时间窗行为复核（v0.1.0 代码）",
+ "network": {
+  "endpoint": "eutils.ncbi.nlm.nih.gov",
+  "requests_total": 11,
+  "sleep_seconds": 1.1,
+  "approx_req_per_s": 0.9,
+  "api_key_used": false
+ },
+ "seen_dedup": {
+  "seen_before": 17,
+  "esearch_hits": [
+   33,
+   12,
+   14
+  ],
+  "union": 17,
+  "already_seen": 17,
+  "new": 0,
+  "efetch_calls": 0,
+  "conclusion": "首次真实运行写下的 17 篇全部命中 seen，0 新增、不再调 efetch；seen 文件内容未变"
+ },
+ "edat_window": {
+  "keyword": "sepsis biomarker",
+  "retmax": 3,
+  "reldate_1": {
+   "count": 11,
+   "returned": 3
+  },
+  "reldate_7": {
+   "count": 33
+  },
+  "reldate_30": {
+   "count": 147,
+   "returned": 3
+  },
+  "conclusion": "命中数随窗口单调递增（11→33→147），datetype=edat 增量窗口真实生效",
+  "caveat": "reldate=30 且 sort=pub_date 时前三为提前定档的 ahead-of-print（pubdate 2026 Dec/Nov 15/Oct 15），扩窗会把刊期更靠后的条目排前；edat 窗口语义不受影响"
+ },
+ "daily_volume_check": {
+  "term": "journal article[pt]",
+  "reldate": 1,
+  "count": 8595,
+  "readme_claim_same_day_morning": 7773,
+  "conclusion": "同日晚间 8,595 ≥ 同日早间 7,773，README 日增口径自洽"
+ },
+ "redaction": "本回归未新增候选文献，无摘要入库；临时产物（/tmp）未入仓库",
+ "review_status": "model_only"
+}
