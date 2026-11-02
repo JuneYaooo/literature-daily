@@ -1,0 +1,602 @@
+{
+ "schema_version": "1.1",
+ "tool": "literature-daily",
+ "run_date": "2026-11-02",
+ "offline": false,
+ "window": {
+  "datetype": "edat",
+  "reldate": 7,
+  "base_reldate": 7,
+  "last_run": "2026-11-02",
+  "sort": "most_recent",
+  "retmax": 6,
+  "id_limit": 1000
+ },
+ "research_interests": "脓毒症（sepsis）生物标志物、ICU 机器学习早期预警评分，以及可在床旁落地的预测模型验证研究",
+ "keywords": [
+  {
+   "keyword": "sepsis biomarker",
+   "count": 63,
+   "returned": 8,
+   "scanned": 63,
+   "new": 54,
+   "query_translation": "(\"sepsis\"[MeSH Terms] OR \"sepsis\"[All Fields]) AND (\"biomarker s\"[All Fields] OR \"biomarkers\"[Supplementary Concept] OR \"biomarkers\"[All Fields] OR \"biomarker\"[All Fields] OR \"biomarkers\"[MeSH Terms]) AND 2026/10/26:2026/11/02[Date - Entry]",
+   "warnings": []
+  },
+  {
+   "keyword": "machine learning sepsis",
+   "count": 13,
+   "returned": 6,
+   "scanned": 13,
+   "new": 7,
+   "query_translation": "(\"machine learning\"[MeSH Terms] OR (\"machine\"[All Fields] AND \"learning\"[All Fields]) OR \"machine learning\"[All Fields]) AND (\"sepsis\"[MeSH Terms] OR \"sepsis\"[All Fields]) AND 2026/10/26:2026/11/02[Date - Entry]",
+   "warnings": []
+  },
+  {
+   "keyword": "early warning score",
+   "count": 18,
+   "returned": 7,
+   "scanned": 18,
+   "new": 12,
+   "query_translation": "(\"early warning score\"[MeSH Terms] OR (\"early\"[All Fields] AND \"warning\"[All Fields] AND \"score\"[All Fields]) OR \"early warning score\"[All Fields]) AND 2026/10/26:2026/11/02[Date - Entry]",
+   "warnings": []
+  }
+ ],
+ "stats": {
+  "esearch_hits": 94,
+  "union": 87,
+  "already_seen": 18,
+  "new": 18,
+  "deferred": 51,
+  "requests": 4
+ },
+ "deferred_pmids": [
+  "42955163",
+  "42952930",
+  "42952779",
+  "42952644",
+  "42952567",
+  "42952521",
+  "42952049",
+  "42951721",
+  "42951006",
+  "42949725",
+  "42948031",
+  "42947767",
+  "42944771",
+  "42943553",
+  "42943346",
+  "42942533",
+  "42942510",
+  "42942373",
+  "42942339",
+  "42942070",
+  "42941860",
+  "42941684",
+  "42940131",
+  "42940028",
+  "42940009",
+  "42939948",
+  "42939941",
+  "42939871",
+  "42939783",
+  "42939715",
+  "42939605",
+  "42938782",
+  "42938719",
+  "42938103",
+  "42936678",
+  "42935876",
+  "42934835",
+  "42934600",
+  "42933837",
+  "42932226",
+  "42931938",
+  "42931812",
+  "42931255",
+  "42931102",
+  "42930077",
+  "42928302",
+  "42933821",
+  "42931101",
+  "42930371",
+  "42929754",
+  "42928933"
+ ],
+ "candidates": [
+  {
+   "pmid": "42964096",
+   "title": "Serum and cerebrospinal fluid biomarkers for risk stratification of hospitalized neonates and young infants with suspected serious bacterial infections: a secondary analysis of a prospective cohort study.",
+   "authors": [
+    "Chaymae El Abbass",
+    "Luis Alberto Benegas",
+    "Andrea Alemany",
+    "Cristina Garcia-Mauriño",
+    "Ilham Elouardighi",
+    "Imane Zizi",
+    "Najat Amalik",
+    "Lamya El Laziji",
+    "Sobha El Ftouh",
+    "Rachid Babi",
+    "Khalid Bounagua",
+    "Nouhayla Bouali",
+    "Sara Ajanovic",
+    "Sara Arias",
+    "Dan Ouchi",
+    "Fio Vialard",
+    "David Torres-Fernandez",
+    "Pere Millat-Martinez",
+    "Diana Barrios",
+    "Rosauro Varo",
+    "Kevin C Kain",
+    "Ruth Aguilar",
+    "Carlota Dobaño",
+    "Gemma Moncunill",
+    "Houssain Tligui",
+    "Bàrbara Baro",
+    "Quique Bassat",
+    "Amina Barkat"
+   ],
+   "journal": "Frontiers in immunology",
+   "journal_iso": "Front Immunol",
+   "pubdate": "2026",
+   "doi": "10.3389/fimmu.2026.1873954",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42964096/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42958789",
+   "title": "Lactate Drives Pathological Browning of White Adipose Tissue to Aggravate Sepsis-Associated Metabolic Disorders in a GPR81-Dependent Manner.",
+   "authors": [
+    "Chunliang Zheng",
+    "Xiaohua Li",
+    "Shuo Li",
+    "Chungen Xing",
+    "Chun Cao"
+   ],
+   "journal": "Advanced science (Weinheim, Baden-Wurttemberg, Germany)",
+   "journal_iso": "Adv Sci (Weinh)",
+   "pubdate": "2026 Oct 29",
+   "doi": "10.1002/advs.78487",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42958789/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42958350",
+   "title": "Clinical correlates of the Haemoglobin to Red Cell Distribution Width ratio in bacterial bloodstream infections and concomitant kidney dysfunction.",
+   "authors": [
+    "John Nzobokela",
+    "David Chisompola",
+    "Jay Chibinga",
+    "Kesaobaka Batisani",
+    "Alick Mwambungu",
+    "Sepiso K Masenga"
+   ],
+   "journal": "BMC research notes",
+   "journal_iso": "BMC Res Notes",
+   "pubdate": "2026 Aug 01",
+   "doi": "10.1186/s13104-026-07964-7",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42958350/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42956798",
+   "title": "TREM-1 in Sepsis and Septic Shock: From Pathophysiology to Precision Immunomodulation.",
+   "authors": [
+    "Bruno Evrard",
+    "Tom Van Der Poll",
+    "Benjamin Chousterman",
+    "Bruno François"
+   ],
+   "journal": "Seminars in respiratory and critical care medicine",
+   "journal_iso": "Semin Respir Crit Care Med",
+   "pubdate": "2026 Oct 29",
+   "doi": "10.1055/a-2984-4651",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42956798/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42955912",
+   "title": "Dynamic assessment of renal resistive index using point-of-care ultrasonography for early detection of sepsis-induced acute kidney injury: A multicenter clinical trial protocol.",
+   "authors": [
+    "Zongfang Ren",
+    "Lingling Wang",
+    "Jinxi Yue",
+    "Nimei Xu",
+    "Ming Wu",
+    "Zhifeng Liu"
+   ],
+   "journal": "PloS one",
+   "journal_iso": "PLoS One",
+   "pubdate": "2026",
+   "doi": "10.1371/journal.pone.0359982",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42955912/",
+   "pubtypes": [
+    "Journal Article",
+    "Clinical Trial Protocol"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42955694",
+   "title": "Inflammation and thrombosis: from pathophysiology to future treatments.",
+   "authors": [
+    "Davide Santagata",
+    "Laura Giovenali",
+    "Emanuele Guerrieri",
+    "Lorenzo Falsetti",
+    "Alessandro Squizzato",
+    "Gianluca Moroncini"
+   ],
+   "journal": "Internal and emergency medicine",
+   "journal_iso": "Intern Emerg Med",
+   "pubdate": "2026 Oct 28",
+   "doi": "10.1007/s11739-026-04574-w",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42955694/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42938724",
+   "title": "Artificial Intelligence in the Fight Against Antimicrobial Resistance: Applications in Diagnosis, Susceptibility Prediction, Precision Dosing, and Antibiotic Discovery.",
+   "authors": [
+    "Susanna Esposito",
+    "Valentina Fainardi",
+    "Gaia Giorgia Arnesano",
+    "Alberto Argentiero",
+    "Nicola Principi"
+   ],
+   "journal": "Antibiotics (Basel, Switzerland)",
+   "journal_iso": "Antibiotics (Basel)",
+   "pubdate": "2026 Oct 06",
+   "doi": "10.3390/antibiotics15100983",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42938724/",
+   "pubtypes": [
+    "Journal Article",
+    "Review"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42937359",
+   "title": "AI/ML-enabled sepsis prediction systems: laboratory considerations from development to deployment.",
+   "authors": [
+    "Thomas Durant",
+    "Zachary Aldewereld",
+    "David R Peaper",
+    "Sarah E Wheeler"
+   ],
+   "journal": "Journal of clinical microbiology",
+   "journal_iso": "J Clin Microbiol",
+   "pubdate": "2026 Oct 27",
+   "doi": "10.1128/jcm.01461-25",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42937359/",
+   "pubtypes": [
+    "Journal Article",
+    "Review"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42935671",
+   "title": "Identification and validation of biomarkers related to oxidative stress in pediatric sepsis utilizing WGCNA and multiple machine learning algorithms.",
+   "authors": [
+    "Yumeng Liu",
+    "Gang Luo"
+   ],
+   "journal": "Frontiers in bioinformatics",
+   "journal_iso": "Front Bioinform",
+   "pubdate": "2026",
+   "doi": "10.3389/fbinf.2026.1745381",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42935671/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker",
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42935182",
+   "title": "Artificial intelligence early-warning systems for sepsis: From risk scores to bedside action.",
+   "authors": [
+    "Zekai Yu",
+    "Chengwen Song"
+   ],
+   "journal": "Technology and health care : official journal of the European Society for Engineering and Medicine",
+   "journal_iso": "Technol Health Care",
+   "pubdate": "2026 Oct 27",
+   "doi": "10.1177/09287329261502097",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42935182/",
+   "pubtypes": [
+    "Journal Article",
+    "Review"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "machine learning sepsis",
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42932958",
+   "title": "Acute kidney injury phenotypes: clinical reality or statistical artifact?",
+   "authors": [
+    "Pranai Tandon",
+    "Girish N Nadkarni",
+    "Ankit Sakhuja"
+   ],
+   "journal": "Current opinion in critical care",
+   "journal_iso": "Curr Opin Crit Care",
+   "pubdate": "2026 Oct 09",
+   "doi": "10.1097/MCC.0000000000001429",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42932958/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker",
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42930604",
+   "title": "Before Sepsis Strikes: Artificial Intelligence for Early Prediction of Postoperative Sepsis and Sepsis-Related Complications After Major Abdominal Surgery-A Systematic Review.",
+   "authors": [
+    "Wasim Iyad Ibrahim Alghoul",
+    "Ibrahim Alabid",
+    "Malak Moones Abedi",
+    "Mohamedanas Mohamedfaruk Patni",
+    "Biji Thomas George",
+    "Subhranshu Sekhar Kar",
+    "Rajani Dube",
+    "Wed Burhan Jameel Al-Shammari",
+    "Mohamed Osman Elhag Osman",
+    "Riza Jazlin Neyyappadath",
+    "Subhanka Nagabhatla",
+    "Aya Sabir Salah Ahmed"
+   ],
+   "journal": "Medical sciences (Basel, Switzerland)",
+   "journal_iso": "Med Sci (Basel)",
+   "pubdate": "2026 Oct 19",
+   "doi": "10.3390/medsci14060685",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42930604/",
+   "pubtypes": [
+    "Journal Article",
+    "Systematic Review",
+    "Review"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42952268",
+   "title": "Rapid Response System Escalation During Recovery of Hospital Bed Occupancy: An Observational Longitudinal Study.",
+   "authors": [
+    "Ayako Noguchi",
+    "Tomoaki Yamada",
+    "Tatsuhiko Anzai",
+    "Kouji Oka",
+    "Masumi Ai",
+    "Yuji Uchimura",
+    "Mikayo Toba",
+    "Kunihiko Takahashi",
+    "Mutsuko Moriwaki",
+    "Kenji Wakabayashi"
+   ],
+   "journal": "Nursing in critical care",
+   "journal_iso": "Nurs Crit Care",
+   "pubdate": "2026 Nov",
+   "doi": "10.1111/nicc.70761",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42952268/",
+   "pubtypes": [
+    "Journal Article",
+    "Observational Study"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42944360",
+   "title": "HydroPrior: Offline LLM-Prior-Guided Residual Warning for Hydropower Bearing Vibration.",
+   "authors": [
+    "Zile Dong",
+    "Daqing Zhong",
+    "Yanru Zhang"
+   ],
+   "journal": "Sensors (Basel, Switzerland)",
+   "journal_iso": "Sensors (Basel)",
+   "pubdate": "2026 Oct 14",
+   "doi": "10.3390/s26206497",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42944360/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42940565",
+   "title": "Comparison of qSOFA Score and NEWS for Predicting Hospital Admission and Mortality in the Emergency Department: A Prospective Observational Study.",
+   "authors": [
+    "Abdurrahman Yılmaz",
+    "Ali Ünal"
+   ],
+   "journal": "Healthcare (Basel, Switzerland)",
+   "journal_iso": "Healthcare (Basel)",
+   "pubdate": "2026 Oct 19",
+   "doi": "10.3390/healthcare14203521",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42940565/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42940405",
+   "title": "Risk-Informed Complaint Management in Neurosurgery: Development and Temporal Validation of an Early-Warning Model for Dispute Escalation.",
+   "authors": [
+    "Mingming Zhang",
+    "Jiarong He",
+    "Yuquan Chen",
+    "Jian Cui",
+    "Yu Zhou"
+   ],
+   "journal": "Healthcare (Basel, Switzerland)",
+   "journal_iso": "Healthcare (Basel)",
+   "pubdate": "2026 Oct 09",
+   "doi": "10.3390/healthcare14203360",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42940405/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42938694",
+   "title": "Clinical Characteristics, Antimicrobial Susceptibility, Treatment, and Outcomes of Achromobacter Bacteremia: A 20-Year Retrospective Cohort Study.",
+   "authors": [
+    "Tawin Khaimook",
+    "Pisud Siripaitoon",
+    "Sarunyou Chusri",
+    "Narongdet Kositpantawong",
+    "Siripen Kanchanasuwan",
+    "Sorawit Chittrakarn",
+    "Nattapat Sangkakul",
+    "Nonthanat Tongsengkee"
+   ],
+   "journal": "Antibiotics (Basel, Switzerland)",
+   "journal_iso": "Antibiotics (Basel)",
+   "pubdate": "2026 Sep 25",
+   "doi": "10.3390/antibiotics15100953",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42938694/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42934813",
+   "title": "The DECIDE Cattle Barometer: a cross-country monitoring and decision support tool for respiratory pathogens.",
+   "authors": [
+    "Jade Bokma",
+    "Charlotte Doidge",
+    "Stan Jourquin",
+    "Miel Hostens",
+    "Saba Noor",
+    "Inge Santman-Berends",
+    "Stefaan Ribbens",
+    "Julien Evrard",
+    "Sebastiaan Theuns",
+    "Cosme Sánchez-Miguel",
+    "Gerdien van Schaik",
+    "Jasmeet Kaler",
+    "Bart Pardon"
+   ],
+   "journal": "Irish veterinary journal",
+   "journal_iso": "Ir Vet J",
+   "pubdate": "2026 Jul 30",
+   "doi": "10.1186/s13620-026-00356-0",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42934813/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  }
+ ]
+}

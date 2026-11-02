@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
-"""把 judgments_v1.jsonl 聚合成 summary_v1.json（数字全部可由逐题判断复现）。
+"""把 judgments_<版本>.jsonl 聚合成 summary_<版本>.json（数字全部可由逐题判断复现）。
 
-用法：python3 evals/scripts/aggregate_results.py
+用法：python3 evals/scripts/aggregate_results.py        # 默认 v1
+      python3 evals/scripts/aggregate_results.py v2     # v0.2.0 改前/改后
 """
 
 import json
 import math
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[1]
-JUDGMENTS = HERE / "judgments_v1.jsonl"
-SUMMARY = HERE / "summary_v1.json"
-
-DIMENSIONS = ["project_understanding", "real_effect", "iteration_improvement",
-              "effect_evaluation", "showcase_integrity"]
+NOTES = {
+    "v1": ("A critical failure always fails that judgment; pass otherwise requires all "
+           "atomic checks green (script layer) or a mean dimension score of at least "
+           "3.0/4.0 (agent layer). 判定为开发 Agent 自评（model_only）。"),
+    "v2": ("baseline = v0.1.1 (git d3eff9a)，skill = v0.2.0，同一输入。通过 = 无硬失败且"
+           " failed_required_checks 为空；维度分仅作诊断。判定为开发 Agent 自评（model_only）；"
+           "d4/d7 的改后结果来自 mock/离线单测，未在线复现。"),
+}
 
 
 def wilson(passes: int, total: int, z: float = 1.96) -> list[float] | None:
@@ -26,9 +31,13 @@ def wilson(passes: int, total: int, z: float = 1.96) -> list[float] | None:
     return [round(center - spread, 4), round(center + spread, 4)]
 
 
-def main() -> int:
+def main(argv: list[str]) -> int:
+    version = argv[0] if argv else "v1"
+    judgments_path = HERE / f"judgments_{version}.jsonl"
+    summary_path = HERE / f"summary_{version}.json"
     judgments = [json.loads(line) for line in
-                 JUDGMENTS.read_text(encoding="utf-8").splitlines() if line.strip()]
+                 judgments_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    DIMENSIONS = list(dict.fromkeys(dim for j in judgments for dim in j.get("scores", {})))
 
     conditions: dict[str, dict] = {}
     for name in ("baseline", "skill"):
@@ -59,16 +68,13 @@ def main() -> int:
         "conditions": conditions,
         "skill_minus_baseline_pass_rate": (None if skill is None or baseline is None
                                            else round(skill - baseline, 4)),
-        "interpretation_note": (
-            "A critical failure always fails that judgment; pass otherwise requires all "
-            "atomic checks green (script layer) or a mean dimension score of at least "
-            "3.0/4.0 (agent layer). 判定为开发 Agent 自评（model_only）。"),
+        "interpretation_note": NOTES.get(version, NOTES["v1"]),
     }
-    SUMMARY.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
+    summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
                        encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))

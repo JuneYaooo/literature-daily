@@ -1,12 +1,25 @@
 #!/usr/bin/env python3
 """literature-daily 的 PubMed 增量抓取脚本（纯 Python 标准库）。
 
-流程：读 config.json（关键词列表）→ esearch（edat 增量窗口）→ 与 seen.json 去重
-→ efetch 批量取元数据与摘要 → 解析 XML → 候选清单 JSON；seen 原子写回（tmp + rename）。
+流程：读 config.json（关键词列表）→ esearch（edat 增量窗口，Most Recent 排序，取全量 ID）
+→ 与 seen.json 去重 → 每关键词按 retmax 收录新文献（超出部分顺延、不写 seen）→ efetch
+批量取元数据与摘要 → 解析 XML（含撤稿/勘误/预印本标记）→ 候选清单 JSON；seen 原子写回。
+
+v0.2.0 起的逻辑变更（依据见 references/benchmarks.md、evals/iteration_notes.md）：
+- retmax 不再截断 esearch，而是"每关键词每轮最多新收录篇数"：esearch 取最多 id_limit
+  个 ID 先与 seen 去重再截取，已读文献不再挤占名额（v0.1.x 的"seen 饿死"缺陷）。
+- 排序改用 PubMed 默认的 Most Recent（按 edat 入库时间新→旧），与 edat 窗口同口径；
+  不再用 sort=pub_date（会把提前定档的 ahead-of-print 排到最前、挤掉真正新入库的条目）。
+- 距上次运行超过 reldate 天时自动补窗（上限 MAX_CATCHUP 天），对齐 My NCBI 的"自上次以来"。
+- 记录 esearch 的 querytranslation / errorlist / warninglist：拼错的词会被 PubMed 静默忽略，
+  检索式实际被放宽，必须提示用户。
+- 网络瞬断与 429/5xx 自动退避重试（最多 3 次）。
+- --no-commit：只读 seen，不写回；配合 render_digest.py --commit-seen 实现"渲染成功才算已读"。
 
 用法：
   python3 scripts/fetch_pubmed.py config.json --seen data/seen.json -o candidates.json
   python3 scripts/fetch_pubmed.py config.json --offline evals/fixtures/offline_v1 -o candidates.json
+  python3 scripts/fetch_pubmed.py config.json --seen data/seen.json --no-commit -o candidates.json
 
 限速：默认每次请求间隔 1.1s（实际约 0.9 req/s，对 NCBI 温柔）；--sleep 可调但下限 0.4s
 （NCBI 无 key 限速 3 req/s，0.4s 是不封 IP 的底线）。--api-key 只从命令行或环境变量
@@ -17,6 +30,7 @@ PUBMED_API_KEY 读取，绝不写入仓库。
 
 from __future__ import annotations
 
+import email.utils
 import json
 import os
 import sys
@@ -32,6 +46,16 @@ EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 MIN_SLEEP = 0.4          # NCBI 无 key 3 req/s 的硬下限
 DEFAULT_SLEEP = 1.1      # 默认更温柔：实际 ≤1 req/s
 BATCH_SIZE = 100         # efetch 单批 PMID 上限
+DEFAULT_ID_LIMIT = 1000  # esearch 每关键词最多扫描的 ID 数（只取 ID，开销很小）
+MAX_ID_LIMIT = 10000
+MAX_CATCHUP = 60         # 自动补窗上限（天）
+RETRY_STATUS = {429, 500, 502, 503, 504}
+RETRY_BACKOFF = (2.0, 5.0)  # 两次重试的等待秒数（429 若带 Retry-After 取较大者）
+
+# PubMed 出版类型 → 日报标记（类型名以 PubMed Help 2026-11 为准；旧名一并兼容）
+NOTICE_TYPES = {"Retraction Notice", "Retraction of Publication", "Published Erratum",
+                "Expression of Concern"}
+OPINION_TYPES = {"Comment", "Editorial", "Letter", "News", "Newspaper Article"}
 
 CONFIG_SCHEMA_NOTE = (
     "config.json 需要形如 {\"keywords\": [\"...\"], \"retmax\": 15, \"reldate\": 7, "
@@ -58,10 +82,14 @@ def load_config(path: Path) -> dict:
         raise InputError("配置缺少非空的 keywords 列表（" + CONFIG_SCHEMA_NOTE + "）")
     if not all(isinstance(k, str) and k.strip() for k in keywords):
         raise InputError("keywords 必须是非空字符串列表")
-    for field, default in (("retmax", 15), ("reldate", 7)):
+    for field, default in (("retmax", 15), ("reldate", 7), ("id_limit", DEFAULT_ID_LIMIT)):
         value = config.get(field, default)
-        if not isinstance(value, int) or value <= 0:
+        if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
             raise InputError(f"{field} 必须是正整数，当前为 {value!r}")
+    if config.get("id_limit", DEFAULT_ID_LIMIT) > MAX_ID_LIMIT:
+        raise InputError(f"id_limit 不能超过 {MAX_ID_LIMIT}（esearch 单次上限）")
+    if not isinstance(config.get("auto_catchup", True), bool):
+        raise InputError("auto_catchup 必须是 true/false")
     return config
 
 
@@ -92,40 +120,117 @@ class HttpClient:
         if self.api_key:
             query["api_key"] = self.api_key
         url = f"{EUTILS}/{endpoint}.fcgi?{urllib.parse.urlencode(query)}"
-        wait = self.sleep - (time.monotonic() - self._last_at)
-        if wait > 0:
-            time.sleep(wait)
-        try:
-            with urllib.request.urlopen(url, timeout=30) as resp:
-                body = resp.read()
-        except (urllib.error.URLError, OSError) as exc:
-            print(f"[error] 请求失败（{endpoint}）：{exc}", file=sys.stderr)
-            raise SystemExit(4) from exc
-        self._last_at = time.monotonic()
-        self.requests += 1
-        return body
+        attempts = len(RETRY_BACKOFF) + 1
+        for attempt in range(attempts):
+            wait = self.sleep - (time.monotonic() - self._last_at)
+            if wait > 0:
+                time.sleep(wait)
+            try:
+                with urllib.request.urlopen(url, timeout=30) as resp:
+                    body = resp.read()
+            except urllib.error.HTTPError as exc:
+                self._last_at = time.monotonic()
+                self.requests += 1
+                if exc.code in RETRY_STATUS and attempt < attempts - 1:
+                    delay = max(RETRY_BACKOFF[attempt], retry_after_seconds(exc))
+                    print(f"[retry] {endpoint} HTTP {exc.code}，{delay:.0f}s 后重试"
+                          f"（{attempt + 1}/{attempts - 1}）", file=sys.stderr)
+                    time.sleep(delay)
+                    continue
+                print(f"[error] 请求失败（{endpoint}）：HTTP {exc.code}", file=sys.stderr)
+                raise SystemExit(4) from exc
+            except (urllib.error.URLError, OSError) as exc:
+                self._last_at = time.monotonic()
+                self.requests += 1
+                if attempt < attempts - 1:
+                    delay = RETRY_BACKOFF[attempt]
+                    print(f"[retry] {endpoint} 网络错误（{exc}），{delay:.0f}s 后重试"
+                          f"（{attempt + 1}/{attempts - 1}）", file=sys.stderr)
+                    time.sleep(delay)
+                    continue
+                print(f"[error] 请求失败（{endpoint}）：{exc}", file=sys.stderr)
+                raise SystemExit(4) from exc
+            self._last_at = time.monotonic()
+            self.requests += 1
+            return body
+        raise SystemExit(4)  # pragma: no cover（循环内必然 return 或退出）
 
 
-def esearch_keyword(client: HttpClient, keyword: str, retmax: int, reldate: int,
+def retry_after_seconds(exc: urllib.error.HTTPError) -> float:
+    """解析 Retry-After（秒数或 HTTP 日期），无法解析返回 0。"""
+    value = (exc.headers.get("Retry-After") if exc.headers else None) or ""
+    value = value.strip()
+    if not value:
+        return 0.0
+    if value.isdigit():
+        return min(float(value), 60.0)
+    try:
+        parsed = email.utils.parsedate_to_datetime(value)
+        return max(0.0, min(60.0, parsed.timestamp() - time.time()))
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def esearch_keyword(client: HttpClient, keyword: str, id_limit: int, reldate: int,
                     offline_file: str) -> dict:
-    """esearch 一个关键词：edat 增量窗口 + pub_date 排序，返回 {count, pmids}。"""
+    """esearch 一个关键词：edat 增量窗口，返回 {count, pmids, translation, warnings}。
+
+    不传 sort：PubMed 的 esearch 默认即 Most Recent（按入库时间新→旧，2026-11-02 实测
+    与 PubMed Help "Most Recent = date added to PubMed" 一致），与 edat 窗口同口径。
+    retmax 用 id_limit 取足 ID，去重与截取在本地做。
+    """
     params = {
         "db": "pubmed",
         "term": keyword,
         "datetype": "edat",
         "reldate": str(reldate),
-        "retmax": str(retmax),
-        "sort": "pub_date",
+        "retmax": str(id_limit),
         "retmode": "json",
     }
     body = client.get("esearch", params, offline_file=offline_file)
     try:
-        data = json.loads(body.decode("utf-8"))["esearchresult"]
+        data = json.loads(body.decode("utf-8"))
+        if isinstance(data, dict) and "esearchresult" not in data and data.get("error"):
+            raise InputError(f"esearch 返回错误（{keyword}）：{data['error']}")
+        data = data["esearchresult"]
+        if data.get("ERROR"):
+            raise InputError(f"esearch 返回错误（{keyword}）：{data['ERROR']}")
         count = int(data["count"])
         pmids = [str(p) for p in data["idlist"]]
     except (json.JSONDecodeError, KeyError, ValueError, TypeError) as exc:
         raise InputError(f"esearch 响应解析失败（{keyword}）：{exc}") from exc
-    return {"keyword": keyword, "count": count, "pmids": pmids}
+    return {"keyword": keyword, "count": count, "pmids": pmids,
+            "translation": str(data.get("querytranslation") or ""),
+            "warnings": query_warnings(data)}
+
+
+def query_warnings(data: dict) -> list[str]:
+    """把 esearch 的 errorlist/warninglist 翻成人话。
+
+    PubMed 对找不到的词（如拼写错误 "biomarkr"）会静默丢弃、对找不到的引号短语会
+    拆开检索，检索式实际被放宽——2026-11-02 实测 "sepsis biomarkr" 退化为只搜 sepsis。
+    """
+    messages: list[str] = []
+    errors = data.get("errorlist") or {}
+    warns = data.get("warninglist") or {}
+    if isinstance(errors, dict):
+        for term in errors.get("phrasesnotfound") or []:
+            messages.append(f"词“{term}”在 PubMed 中不存在，已被忽略（检查拼写）")
+        for field in errors.get("fieldsnotfound") or []:
+            messages.append(f"字段标签“{field}”无效，已被忽略")
+    if isinstance(warns, dict):
+        for phrase in warns.get("quotedphrasesnotfound") or []:
+            messages.append(f"引号短语 {phrase} 未找到，PubMed 已拆词检索（结果可能变宽）")
+        for phrase in warns.get("phrasesignored") or []:
+            messages.append(f"停用词/短语“{phrase}”被忽略")
+        for msg in warns.get("outputmessages") or []:
+            if msg in {"NOT", "AND", "OR"}:
+                # 2026-11-02 实测："sepsis AND NOT preprint[pt]" 的 NOT 被丢弃，实际只检索预印本
+                messages.append(f"布尔运算符 {msg} 被 PubMed 忽略，检索式语义可能已反转"
+                                f"（排除请写 “A NOT B”，不要写 “A AND NOT B”）")
+            elif msg and msg != "No items found.":
+                messages.append(f"PubMed 提示：{msg}")
+    return messages
 
 
 def parse_author(node: ET.Element) -> str | None:
@@ -207,6 +312,8 @@ def parse_article(article_node: ET.Element, pmid: str) -> dict:
                 for n in article_node.findall(
                     "MedlineCitation/Article/PublicationTypeList/PublicationType")
                 if "".join(n.itertext()).strip()]
+    ref_types = {n.get("RefType") or "" for n in article_node.findall(
+        "MedlineCitation/CommentsCorrectionsList/CommentsCorrections")}
 
     return {
         "pmid": pmid,
@@ -218,8 +325,37 @@ def parse_article(article_node: ET.Element, pmid: str) -> dict:
         "doi": doi,
         "pubmed_url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
         "pubtypes": pubtypes,
+        "flags": classify_flags(pubtypes, ref_types),
         "abstract": abstract,
     }
+
+
+def classify_flags(pubtypes: list[str], ref_types: set[str] | None = None) -> list[str]:
+    """出版类型与更正关系 → 日报标记（排序固定，便于确定性比对）。
+
+    - retracted：本文已撤稿（pt=Retracted Publication 或 CommentsCorrections RetractionIn）
+    - concern：本文被发了关注声明（ExpressionOfConcernIn）
+    - notice：本条是撤稿声明/勘误/关注声明本身（不是研究论文）
+    - preprint：预印本，未经同行评审
+    - opinion：述评/通讯/评论类
+    - book：图书章节
+    """
+    types = set(pubtypes)
+    refs = ref_types or set()
+    flags = []
+    if "Retracted Publication" in types or "RetractionIn" in refs:
+        flags.append("retracted")
+    if "ExpressionOfConcernIn" in refs:
+        flags.append("concern")
+    if types & NOTICE_TYPES:
+        flags.append("notice")
+    if "Preprint" in types:
+        flags.append("preprint")
+    if types & OPINION_TYPES:
+        flags.append("opinion")
+    if "Book" in types:
+        flags.append("book")
+    return flags
 
 
 def parse_book_article(node: ET.Element, pmid: str) -> dict:
@@ -266,6 +402,7 @@ def parse_book_article(node: ET.Element, pmid: str) -> dict:
         "doi": doi,
         "pubmed_url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
         "pubtypes": ["Book"],
+        "flags": ["book"],
         "abstract": " ".join(abstract_parts) if abstract_parts else None,
     }
 
@@ -304,6 +441,68 @@ def efetch_articles(client: HttpClient, pmids: list[str], offline_file: str) -> 
     return articles
 
 
+def load_seen_state(path: Path) -> tuple[list[str], str | None]:
+    """返回 (pmids, updated)。updated 为上次写回日期（YYYY-MM-DD），用于自动补窗。"""
+    pmids = load_seen(path)
+    updated = None
+    if path.is_file():
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if isinstance(data, dict) and isinstance(data.get("updated"), str):
+            updated = data["updated"]
+    return pmids, updated
+
+
+def effective_reldate(reldate: int, run_date: str, last_run: str | None,
+                      auto_catchup: bool = True) -> tuple[int, int | None]:
+    """自上次运行以来的窗口：返回 (实际 reldate, 距上次天数)。
+
+    My NCBI 的 What's New 记住"上次取新"的时间；PubMed Help 也建议用入库日期找
+    "自上次检索以来新增"。本脚本固定 reldate 为下限，距上次 > reldate 天时补到
+    gap+1 天（多 1 天重叠，由 seen 去重兜底），上限 MAX_CATCHUP。
+    """
+    if not last_run:
+        return reldate, None
+    try:
+        gap = (date.fromisoformat(run_date) - date.fromisoformat(last_run)).days
+    except ValueError:
+        return reldate, None
+    if auto_catchup and gap + 1 > reldate:
+        return min(gap + 1, max(MAX_CATCHUP, reldate)), gap
+    return reldate, gap
+
+
+def select_new(esearch_results: list[dict], seen_set: set[str], per_keyword: int
+               ) -> tuple[list[str], list[str], dict[str, dict]]:
+    """先去重再截取：每关键词按 Most Recent 顺序最多收录 per_keyword 篇新文献。
+
+    返回 (收录 PMID 有序列表, 顺延 PMID 列表, 每关键词统计)。已被前面关键词收录的
+    条目不重复占名额；顺延的条目不写入 seen，下一轮仍在窗口内就会再出现。
+    """
+    taken: list[str] = []
+    taken_set: set[str] = set()
+    per_kw: dict[str, dict] = {}
+    all_new: list[str] = []
+    all_new_set: set[str] = set()
+    for result in esearch_results:
+        fresh = [p for p in dict.fromkeys(result["pmids"]) if p not in seen_set]
+        for pmid in fresh:
+            if pmid not in all_new_set:
+                all_new.append(pmid)
+                all_new_set.add(pmid)
+        took = 0
+        for pmid in fresh:
+            if pmid in taken_set:
+                continue
+            if took >= per_keyword:
+                break
+            taken.append(pmid)
+            taken_set.add(pmid)
+            took += 1
+        per_kw[result["keyword"]] = {"new": len(fresh), "taken": took}
+    deferred = [p for p in all_new if p not in taken_set]
+    return taken, deferred, per_kw
+
+
 def load_seen(path: Path) -> list[str]:
     if not path.is_file():
         return []
@@ -329,76 +528,90 @@ def write_seen_atomic(path: Path, pmids: list[str], run_date: str) -> None:
 
 def fetch(config_path: Path, seen_path: Path | None, output_path: Path | None,
           offline_dir: Path | None, run_date: str, sleep_seconds: float,
-          api_key: str, strip_abstract: bool) -> int:
+          api_key: str, strip_abstract: bool, commit_seen: bool = True) -> int:
     config = load_config(config_path)
     keywords = [k.strip() for k in config["keywords"]]
-    retmax, reldate = config["retmax"], config["reldate"]
+    retmax, base_reldate = config["retmax"], config["reldate"]
+    id_limit = config.get("id_limit", DEFAULT_ID_LIMIT)
     client = HttpClient(sleep_seconds, offline_dir,
                         tool=config.get("tool", "literature-daily"),
                         email=config.get("email", ""),
                         api_key=api_key or os.environ.get("PUBMED_API_KEY", ""))
 
+    seen, last_run = load_seen_state(seen_path) if seen_path else ([], None)
+    seen_set = set(seen)
+    reldate, gap = effective_reldate(base_reldate, run_date, last_run,
+                                     config.get("auto_catchup", True))
+
     mode = f"离线夹具 {offline_dir}" if offline_dir else f"PubMed（间隔 {client.sleep:.1f}s）"
-    print(f"[fetch] 关键词 {len(keywords)} 个 · reldate={reldate} 天 · retmax={retmax} · {mode}")
+    print(f"[fetch] 关键词 {len(keywords)} 个 · reldate={reldate} 天 · 每词最多收录 {retmax} 篇新文献"
+          f" · {mode}")
+    if reldate != base_reldate:
+        print(f"[window] 距上次运行 {gap} 天 > reldate {base_reldate}，已自动补窗到 {reldate} 天"
+              f"（上限 {MAX_CATCHUP}）")
 
     esearch_results = []
     for index, keyword in enumerate(keywords, start=1):
-        result = esearch_keyword(client, keyword, retmax, reldate,
+        result = esearch_keyword(client, keyword, id_limit, reldate,
                                  offline_file=f"esearch_kw{index}.json")
         esearch_results.append(result)
-        print(f"[esearch] “{keyword}” → 近 {reldate} 天命中 {result['count']}，取回 {len(result['pmids'])}")
+        print(f"[esearch] “{keyword}” → 近 {reldate} 天命中 {result['count']}，扫描 ID {len(result['pmids'])}")
+        sys.stdout.flush()
+        for warning in result["warnings"]:
+            print(f"[warn] “{keyword}”：{warning}", file=sys.stderr)
+        if result["count"] > len(result["pmids"]) and len(result["pmids"]) >= id_limit:
+            print(f"[warn] “{keyword}” 命中 {result['count']} 超过 id_limit {id_limit}，"
+                  "只与最近入库的部分去重；建议收窄检索式", file=sys.stderr)
 
-    seen = load_seen(seen_path) if seen_path else []
-    seen_set = set(seen)
+    union = list(dict.fromkeys(p for r in esearch_results for p in r["pmids"]))
+    taken, deferred, per_kw = select_new(esearch_results, seen_set, retmax)
+    new_total = len(taken) + len(deferred)
+    already_seen = len(union) - new_total
+    print(f"[dedup] 窗口内去重后 {len(union)} 篇 · 已看过跳过 {already_seen} 篇 · 新文献 {new_total} 篇"
+          f" · 本轮收录 {len(taken)} 篇" + (f" · 顺延 {len(deferred)} 篇（超出每词上限 {retmax}，不写 seen）"
+                                         if deferred else ""))
 
-    union: list[str] = []
-    union_set: set[str] = set()
-    for result in esearch_results:
-        for pmid in result["pmids"]:
-            if pmid not in union_set:
-                union.append(pmid)
-                union_set.add(pmid)
-    new_pmids = [p for p in union if p not in seen_set]
-    already_seen = len(union) - len(new_pmids)
-    print(f"[dedup] 本轮去重前 {len(union)} 篇 · 已看过跳过 {already_seen} 篇 · 新增 {len(new_pmids)} 篇")
-
-    articles = efetch_articles(client, new_pmids, offline_file="efetch_v1.xml") if new_pmids else {}
-    if new_pmids:
+    articles = efetch_articles(client, taken, offline_file="efetch_v1.xml") if taken else {}
+    if taken:
         print(f"[efetch] 取回 {len(articles)} 篇元数据与摘要")
 
-    new_set = set(new_pmids)
-    keyword_hits: dict[str, list[str]] = {}
-    for result in esearch_results:
-        keyword_hits.setdefault(result["keyword"], [])
-        for pmid in result["pmids"]:
-            if pmid in new_set and pmid not in keyword_hits[result["keyword"]]:
-                keyword_hits[result["keyword"]].append(pmid)
-
+    taken_set = set(taken)
     candidates = []
-    for pmid in new_pmids:
+    for pmid in taken:
         article = articles[pmid]
         if strip_abstract and article["abstract"]:
             article = {**article, "abstract": None, "abstract_redacted": True}
-        article["matched_keywords"] = [kw for kw in keywords
-                                       if pmid in keyword_hits.get(kw, [])]
+        article["matched_keywords"] = [r["keyword"] for r in esearch_results
+                                       if pmid in r["pmids"]]
         candidates.append(article)
+    flagged = sum(1 for c in candidates if c.get("flags"))
+    if flagged:
+        print(f"[flags] {flagged} 篇带标记（撤稿/勘误/预印本/述评/图书等），渲染时显示徽标")
 
     payload = {
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "tool": "literature-daily",
         "run_date": run_date,
         "offline": offline_dir is not None,
-        "window": {"datetype": "edat", "reldate": reldate, "retmax": retmax},
+        "window": {"datetype": "edat", "reldate": reldate, "base_reldate": base_reldate,
+                   "last_run": last_run, "sort": "most_recent",
+                   "retmax": retmax, "id_limit": id_limit},
         "research_interests": config.get("research_interests", ""),
         "keywords": [{"keyword": r["keyword"], "count": r["count"],
-                      "returned": len(r["pmids"])} for r in esearch_results],
+                      "returned": sum(1 for p in r["pmids"] if p in taken_set),
+                      "scanned": len(r["pmids"]),
+                      "new": per_kw[r["keyword"]]["new"],
+                      "query_translation": r["translation"],
+                      "warnings": r["warnings"]} for r in esearch_results],
         "stats": {
             "esearch_hits": sum(r["count"] for r in esearch_results),
             "union": len(union),
             "already_seen": already_seen,
-            "new": len(new_pmids),
+            "new": len(taken),
+            "deferred": len(deferred),
             "requests": client.requests,
         },
+        "deferred_pmids": deferred,
         "candidates": candidates,
     }
     rendered = json.dumps(payload, ensure_ascii=False, indent=1) + "\n"
@@ -409,10 +622,12 @@ def fetch(config_path: Path, seen_path: Path | None, output_path: Path | None,
     else:
         sys.stdout.write(rendered)
 
-    if seen_path is not None:
-        merged = sorted(set(seen).union(new_pmids))  # 去重：seen 里被手工弄出的重复项也收敛
+    if seen_path is not None and commit_seen:
+        merged = sorted(set(seen).union(taken_set))  # 只写本轮收录的；顺延的下轮再来
         write_seen_atomic(seen_path, merged, run_date)
         print(f"[done] seen 已原子写回 → {seen_path}（累计 {len(merged)} 篇）")
+    elif seen_path is not None:
+        print(f"[done] --no-commit：seen 未改动；渲染成功后用 render_digest.py --commit-seen 标记已读")
     return 0
 
 
@@ -448,7 +663,8 @@ def main(args: list[str]) -> int:
                      run_date=run_date or date.today().isoformat(),
                      sleep_seconds=sleep_seconds,
                      api_key=api_key,
-                     strip_abstract=flag("--strip-abstract"))
+                     strip_abstract=flag("--strip-abstract"),
+                     commit_seen=not flag("--no-commit"))
     except InputError as exc:
         print(f"[error] {exc}", file=sys.stderr)
         return 3

@@ -103,7 +103,8 @@ class OfflineRunTests(unittest.TestCase):
         self.assertEqual([c["pmid"] for c in data["candidates"]],
                          ["99010001", "99010003", "99010006", "99010004", "99010005"])
         self.assertEqual(data["stats"], {"esearch_hits": 158, "union": 6,
-                                         "already_seen": 1, "new": 5, "requests": 4})
+                                         "already_seen": 1, "new": 5, "deferred": 0,
+                                         "requests": 4})
         cross = {c["pmid"]: c["matched_keywords"] for c in data["candidates"]}
         self.assertEqual(cross["99010004"], ["machine learning sepsis", "early warning score"])
         seen = json.loads(self.seen.read_text(encoding="utf-8"))

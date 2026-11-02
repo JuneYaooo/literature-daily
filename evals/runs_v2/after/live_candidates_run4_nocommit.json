@@ -1,0 +1,427 @@
+{
+ "schema_version": "1.1",
+ "tool": "literature-daily",
+ "run_date": "2026-11-02",
+ "offline": false,
+ "window": {
+  "datetype": "edat",
+  "reldate": 7,
+  "base_reldate": 7,
+  "last_run": "2026-11-02",
+  "sort": "most_recent",
+  "retmax": 6,
+  "id_limit": 1000
+ },
+ "research_interests": "脓毒症（sepsis）生物标志物、ICU 机器学习早期预警评分，以及可在床旁落地的预测模型验证研究",
+ "keywords": [
+  {
+   "keyword": "sepsis biomarker",
+   "count": 63,
+   "returned": 7,
+   "scanned": 63,
+   "new": 46,
+   "query_translation": "(\"sepsis\"[MeSH Terms] OR \"sepsis\"[All Fields]) AND (\"biomarker s\"[All Fields] OR \"biomarkers\"[Supplementary Concept] OR \"biomarkers\"[All Fields] OR \"biomarker\"[All Fields] OR \"biomarkers\"[MeSH Terms]) AND 2026/10/26:2026/11/02[Date - Entry]",
+   "warnings": []
+  },
+  {
+   "keyword": "machine learning sepsis",
+   "count": 13,
+   "returned": 1,
+   "scanned": 13,
+   "new": 1,
+   "query_translation": "(\"machine learning\"[MeSH Terms] OR (\"machine\"[All Fields] AND \"learning\"[All Fields]) OR \"machine learning\"[All Fields]) AND (\"sepsis\"[MeSH Terms] OR \"sepsis\"[All Fields]) AND 2026/10/26:2026/11/02[Date - Entry]",
+   "warnings": []
+  },
+  {
+   "keyword": "early warning score",
+   "count": 18,
+   "returned": 5,
+   "scanned": 18,
+   "new": 5,
+   "query_translation": "(\"early warning score\"[MeSH Terms] OR (\"early\"[All Fields] AND \"warning\"[All Fields] AND \"score\"[All Fields]) OR \"early warning score\"[All Fields]) AND 2026/10/26:2026/11/02[Date - Entry]",
+   "warnings": []
+  }
+ ],
+ "stats": {
+  "esearch_hits": 94,
+  "union": 87,
+  "already_seen": 36,
+  "new": 12,
+  "deferred": 39,
+  "requests": 4
+ },
+ "deferred_pmids": [
+  "42952049",
+  "42951721",
+  "42951006",
+  "42949725",
+  "42948031",
+  "42947767",
+  "42944771",
+  "42943553",
+  "42943346",
+  "42942533",
+  "42942510",
+  "42942373",
+  "42942339",
+  "42942070",
+  "42941860",
+  "42941684",
+  "42940131",
+  "42940028",
+  "42940009",
+  "42939948",
+  "42939941",
+  "42939871",
+  "42939783",
+  "42939715",
+  "42939605",
+  "42938782",
+  "42938719",
+  "42938103",
+  "42936678",
+  "42935876",
+  "42934835",
+  "42934600",
+  "42933837",
+  "42932226",
+  "42931938",
+  "42931812",
+  "42931255",
+  "42931102",
+  "42928302"
+ ],
+ "candidates": [
+  {
+   "pmid": "42955163",
+   "title": "Quantification of NLRP3-caspase-1 complex assembly reveals a non-linear association with 30-day mortality in sepsis: a proof-of-concept pilot study.",
+   "authors": [
+    "Fabian Mehl",
+    "Willy J Chedjou",
+    "Andrea Witowski",
+    "Katharina Rump",
+    "Birte Dyck",
+    "Lars Bergmann",
+    "Christian Putensen",
+    "Dietrich Henzler",
+    "Michael Adamzik",
+    "Björn Koos",
+    "Patrick Thon",
+    "Tim Rahmel"
+   ],
+   "journal": "Intensive care medicine experimental",
+   "journal_iso": "Intensive Care Med Exp",
+   "pubdate": "2026 Oct 29",
+   "doi": "10.1186/s40635-026-00992-4",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42955163/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42952930",
+   "title": "Circulating calprotectin and S100A8/A9-related biomarkers for diagnosis and prognostic stratification in adult acute infection and sepsis: a systematic review and meta-analysis.",
+   "authors": [
+    "Yin-Sheng Liao",
+    "Yu-Ping Deng",
+    "Jian-Li Song",
+    "Xuan Yu",
+    "Qiang Li",
+    "Bin Lu",
+    "Guan-Yu Chen"
+   ],
+   "journal": "Frontiers in cellular and infection microbiology",
+   "journal_iso": "Front Cell Infect Microbiol",
+   "pubdate": "2026",
+   "doi": "10.3389/fcimb.2026.1934020",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42952930/",
+   "pubtypes": [
+    "Journal Article",
+    "Meta-Analysis",
+    "Systematic Review"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42952779",
+   "title": "Risk factors for poor prognosis in neonatal sepsis: a systematic review and meta-analysis.",
+   "authors": [
+    "Dejuan Yang",
+    "Yan Han",
+    "Liping Wang",
+    "Wenhua Lü"
+   ],
+   "journal": "Frontiers in medicine",
+   "journal_iso": "Front Med (Lausanne)",
+   "pubdate": "2026",
+   "doi": "10.3389/fmed.2026.1979094",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42952779/",
+   "pubtypes": [
+    "Journal Article",
+    "Systematic Review"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42952644",
+   "title": "Plasma metabolomic profiling identifies candidate biomarkers associated with sepsis diagnosis and mortality prediction.",
+   "authors": [
+    "Yanyan Zhu",
+    "Haocheng Wang",
+    "Sanjun Yi",
+    "Fuping You",
+    "Pingsen Zhao"
+   ],
+   "journal": "Frontiers in immunology",
+   "journal_iso": "Front Immunol",
+   "pubdate": "2026",
+   "doi": "10.3389/fimmu.2026.1931808",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42952644/",
+   "pubtypes": [
+    "Journal Article",
+    "Research Support, Non-U.S. Gov't"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42952567",
+   "title": "Immune-programmed cell death crosstalk implicates plasma sTNFR1 as a candidate biomarker for sepsis-associated encephalopathy.",
+   "authors": [
+    "Che Wang",
+    "Tong Xin",
+    "Yifei Chen",
+    "Na Li",
+    "Lei Zhang",
+    "Fan Zhong",
+    "Lihong Chen",
+    "Liyan Zeng",
+    "Lei Liu"
+   ],
+   "journal": "Frontiers in neurology",
+   "journal_iso": "Front Neurol",
+   "pubdate": "2026",
+   "doi": "10.3389/fneur.2026.1954784",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42952567/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42952521",
+   "title": "IL-10 diplotype and septic shock: Genotype-Phenotype associations with hemodynamic dysfunction and IL-10 expression.",
+   "authors": [
+    "Amr A Amin",
+    "Mohammad Althubiti",
+    "Sameer H Fatani",
+    "Ahmad H Mufti",
+    "Zohor A Azher",
+    "Ghaidaa M Malibari",
+    "Neda M Bogari"
+   ],
+   "journal": "Frontiers in molecular biosciences",
+   "journal_iso": "Front Mol Biosci",
+   "pubdate": "2026",
+   "doi": "10.3389/fmolb.2026.1958117",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42952521/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42930077",
+   "title": "Biosensing Platforms and Multimodal Monitoring of Sepsis-Associated Cell Death.",
+   "authors": [
+    "Oana Coman",
+    "Leonard Azamfirei",
+    "Oana Frandeș",
+    "Bianca-Liana Grigorescu"
+   ],
+   "journal": "Biosensors",
+   "journal_iso": "Biosensors (Basel)",
+   "pubdate": "2026 Sep 23",
+   "doi": "10.3390/bios16100531",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42930077/",
+   "pubtypes": [
+    "Journal Article",
+    "Review"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "sepsis biomarker",
+    "machine learning sepsis"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42933821",
+   "title": "Construction and External Validation of a Predictive Nomogram for Premature Unplanned Discontinuation in Elderly Patients Undergoing Continuous Renal Replacement Therapy in the ICU.",
+   "authors": [
+    "Zhengnan Wu",
+    "Ronghua Zhao",
+    "Mingming Wang",
+    "Shuwen Ren",
+    "Titi Li",
+    "Peng Wang"
+   ],
+   "journal": "Therapeutic apheresis and dialysis : official peer-reviewed journal of the International Society for Apheresis, the Japanese Society for Apheresis, the Japanese Society for Dialysis Therapy",
+   "journal_iso": "Ther Apher Dial",
+   "pubdate": "2026 Oct 26",
+   "doi": "10.1002/1744-9987.70233",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42933821/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42931101",
+   "title": "Emergency Department Pediatric Early Warning System for Identifying Resuscitation-Defined Critical Illness in Children: A Prospective Diagnostic Classification Study in Vietnam.",
+   "authors": [
+    "Duy Ngoc Le",
+    "Vu Duc Bui",
+    "Tung Viet Cao",
+    "Ly Ha Pham",
+    "Khiem Van Nguyen"
+   ],
+   "journal": "Pediatric reports",
+   "journal_iso": "Pediatr Rep",
+   "pubdate": "2026 Oct 02",
+   "doi": "10.3390/pediatric18050131",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42931101/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42930371",
+   "title": "Upper Urinary Tract Culture Positivity in Obstructive Ureterolithiasis-Clinical Severity, Inflammatory Biomarkers, and Early Risk Assessment.",
+   "authors": [
+    "Ana-Maria Ivănuță",
+    "Marius Ivănuță",
+    "Dragoș Puia",
+    "Nicolae Stoican",
+    "Diana-Carmen Cimpoeșu",
+    "Alexandra Haută",
+    "Cătălin Pricop"
+   ],
+   "journal": "Clinics and practice",
+   "journal_iso": "Clin Pract",
+   "pubdate": "2026 Oct 08",
+   "doi": "10.3390/clinpract16100185",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42930371/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42929754",
+   "title": "Early Risk Stratification of COVID-19 Associated Cytokine Storm Using a Four-Cytokine Cumulative Score: A Retrospective Cohort Study.",
+   "authors": [
+    "Junyu Yin",
+    "Xianxu Huang",
+    "Xin Ou",
+    "Shilin Xu",
+    "Jiaying Zhang",
+    "Shuo Wang",
+    "Jianping Sun",
+    "Jiangping Wu",
+    "Guifang Qiao",
+    "Yu Cao",
+    "Qingkun Song"
+   ],
+   "journal": "Journal of medical virology",
+   "journal_iso": "J Med Virol",
+   "pubdate": "2026 Nov",
+   "doi": "10.1002/jmv.71191",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42929754/",
+   "pubtypes": [
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  },
+  {
+   "pmid": "42928933",
+   "title": "Sudden Onset Occipital Headache as a Presenting Feature of Ischaemic Stroke.",
+   "authors": [
+    "Haseeb Mudassir",
+    "Safyaan Tanzeel",
+    "Yewande Odu",
+    "Wasim Ullah Khattak",
+    "Ayibongwe Sithole",
+    "Morsal Rahimy",
+    "Nawaid Ahmad"
+   ],
+   "journal": "Cureus",
+   "journal_iso": "Cureus",
+   "pubdate": "2026 Sep",
+   "doi": "10.7759/cureus.116918",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42928933/",
+   "pubtypes": [
+    "Case Reports",
+    "Journal Article"
+   ],
+   "flags": [],
+   "abstract": null,
+   "matched_keywords": [
+    "early warning score"
+   ],
+   "abstract_redacted": true
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+ "verdicts": [
+  {
+   "pmid": "42968949",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42968705",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42968548",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42968482",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42968262",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42968133",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42964336",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42964288",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42964116",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42952602",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42949442",
+   "bucket": "skip"
+  },
+  {
+   "pmid": "42940427",
+   "bucket": "skip"
+  }
+ ]
+}

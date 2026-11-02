@@ -1,0 +1,54 @@
+# v0.2.0（改后）真实运行 2026-11-02T16:58:48Z · 基于 d3eff9a + v0.2.0 改动 · macOS / Python 3.12.9 · 无 api_key · 间隔 1.1s
+## run1：config.example.json，空 seen
+[fetch] 关键词 3 个 · reldate=7 天 · 每词最多收录 6 篇新文献 · PubMed（间隔 1.1s）
+[esearch] “sepsis biomarker” → 近 7 天命中 63，扫描 ID 63
+[esearch] “machine learning sepsis” → 近 7 天命中 13，扫描 ID 13
+[esearch] “early warning score” → 近 7 天命中 18，扫描 ID 18
+[dedup] 窗口内去重后 87 篇 · 已看过跳过 0 篇 · 新文献 87 篇 · 本轮收录 18 篇 · 顺延 69 篇（超出每词上限 6，不写 seen）
+[efetch] 取回 18 篇元数据与摘要
+[done] 候选清单 → <scratch>/c1.json
+[done] seen 已原子写回 → <scratch>/seen.json（累计 18 篇）
+## run2：同日立即复跑
+[fetch] 关键词 3 个 · reldate=7 天 · 每词最多收录 6 篇新文献 · PubMed（间隔 1.1s）
+[esearch] “sepsis biomarker” → 近 7 天命中 63，扫描 ID 63
+[esearch] “machine learning sepsis” → 近 7 天命中 13，扫描 ID 13
+[esearch] “early warning score” → 近 7 天命中 18，扫描 ID 18
+[dedup] 窗口内去重后 87 篇 · 已看过跳过 18 篇 · 新文献 69 篇 · 本轮收录 18 篇 · 顺延 51 篇（超出每词上限 6，不写 seen）
+[efetch] 取回 18 篇元数据与摘要
+[done] 候选清单 → <scratch>/c2.json
+[done] seen 已原子写回 → <scratch>/seen.json（累计 36 篇）
+## run3：带拼写错误的关键词 sepsis biomarkr
+[fetch] 关键词 2 个 · reldate=7 天 · 每词最多收录 6 篇新文献 · PubMed（间隔 1.1s）
+[esearch] “sepsis biomarkr” → 近 7 天命中 312，扫描 ID 312
+[warn] “sepsis biomarkr”：词“biomarkr”在 PubMed 中不存在，已被忽略（检查拼写）
+[esearch] “machine learning sepsis” → 近 7 天命中 13，扫描 ID 13
+[dedup] 窗口内去重后 312 篇 · 已看过跳过 0 篇 · 新文献 312 篇 · 本轮收录 12 篇 · 顺延 300 篇（超出每词上限 6，不写 seen）
+[efetch] 取回 12 篇元数据与摘要
+[done] 候选清单 → <scratch>/c3.json
+## run4：两阶段提交 --no-commit（模拟定时抓取后当天没分档），连跑两次
+86ebbf561e81d5f8
+[fetch] 关键词 3 个 · reldate=7 天 · 每词最多收录 6 篇新文献 · PubMed（间隔 1.1s）
+[esearch] “sepsis biomarker” → 近 7 天命中 63，扫描 ID 63
+[esearch] “machine learning sepsis” → 近 7 天命中 13，扫描 ID 13
+[esearch] “early warning score” → 近 7 天命中 18，扫描 ID 18
+[dedup] 窗口内去重后 87 篇 · 已看过跳过 36 篇 · 新文献 51 篇 · 本轮收录 12 篇 · 顺延 39 篇（超出每词上限 6，不写 seen）
+[efetch] 取回 12 篇元数据与摘要
+[done] 候选清单 → <scratch>/c4a.json
+[done] --no-commit：seen 未改动；渲染成功后用 render_digest.py --commit-seen 标记已读
+[fetch] 关键词 3 个 · reldate=7 天 · 每词最多收录 6 篇新文献 · PubMed（间隔 1.1s）
+[esearch] “sepsis biomarker” → 近 7 天命中 63，扫描 ID 63
+[esearch] “machine learning sepsis” → 近 7 天命中 13，扫描 ID 13
+[esearch] “early warning score” → 近 7 天命中 18，扫描 ID 18
+[dedup] 窗口内去重后 87 篇 · 已看过跳过 36 篇 · 新文献 51 篇 · 本轮收录 12 篇 · 顺延 39 篇（超出每词上限 6，不写 seen）
+[efetch] 取回 12 篇元数据与摘要
+[done] 候选清单 → <scratch>/c4b.json
+[done] --no-commit：seen 未改动；渲染成功后用 render_digest.py --commit-seen 标记已读
+86ebbf561e81d5f8
+两次候选 PMID 一致： True · 篇数 12
+## run5：AND NOT 写法告警（检索式语义反转）
+[fetch] 关键词 2 个 · reldate=7 天 · 每词最多收录 3 篇新文献 · PubMed（间隔 1.1s）
+[esearch] “sepsis AND NOT preprint[pt]” → 近 7 天命中 0，扫描 ID 0
+[warn] “sepsis AND NOT preprint[pt]”：布尔运算符 NOT 被 PubMed 忽略，检索式语义可能已反转（排除请写 “A NOT B”，不要写 “A AND NOT B”）
+[esearch] “sepsis NOT preprint[pt]” → 近 7 天命中 312，扫描 ID 312
+[dedup] 窗口内去重后 312 篇 · 已看过跳过 0 篇 · 新文献 312 篇 · 本轮收录 3 篇 · 顺延 309 篇（超出每词上限 3，不写 seen）
+[efetch] 取回 3 篇元数据与摘要

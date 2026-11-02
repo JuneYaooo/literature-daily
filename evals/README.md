@@ -7,14 +7,33 @@
 1. **脚本行为层**：对 `evals/fixtures/` 的合成夹具运行 `scripts/fetch_pubmed.py` 与
    `scripts/render_digest.py`（离线模式，固定 `--date 2026-09-19`），逐条核对
    [cases_v1.jsonl](cases_v1.jsonl) 的 required/forbidden 原子检查；确定性用例
-   （c3 去重、c5 渲染）显式双跑验证 sha256。单元测试 29 项：`python3 -m unittest discover tests`。
+   （c3 去重、c5 渲染）显式双跑验证 sha256。单元测试（v0.2.0 共 61 项）：`python3 -m unittest discover tests`。
 2. **Agent 工作流层**：Agent 读取 **2026-09-19 真实调用 PubMed 得到的 17 篇候选**
    （[runs_v1/live_candidates_v1.json](runs_v1/live_candidates_v1.json)，摘要字段已脱敏），
    对照研究兴趣分档并撰写中文一句话导读（[runs_v1/live_verdicts_v1.json](runs_v1/live_verdicts_v1.json)），
    渲染为 [runs_v1/live_digest_2026-09-19.md](runs_v1/live_digest_2026-09-19.md)，
    按 [rubric_v1.md](rubric_v1.md) 三维度判定（case c8）。
 
-## 当前状态（2026-09-19，v0.1.1）
+## V2：v0.2.0 逻辑改进的改前/改后评测（2026-11-02）
+
+- 依据：对标与权威口径调研 [references/benchmarks.md](../references/benchmarks.md)；
+  问题清单与改/不改理由见 [iteration_notes.md](iteration_notes.md) 迭代 5。
+- 题集 [cases_v2.jsonl](cases_v2.jsonl)（8 例：回归/普通/边界/对抗）、量表
+  [rubric_v2.md](rubric_v2.md)（硬失败含"静默漏文献"）、协议 [protocol_v2.json](protocol_v2.json)、
+  逐题判断 [judgments_v2.jsonl](judgments_v2.jsonl)、汇总 [summary_v2.json](summary_v2.json)
+  （`python3 evals/scripts/aggregate_results.py v2` 可复现）。
+- 结果：**v0.1.1 0/8 通过（4 例硬失败），v0.2.0 8/8 通过（0 硬失败）**，每例 1 次运行。
+  用例是针对本次改动设计的，baseline 0/8 属预期，不代表 v0.1.1 的版权/解析/渲染退化。
+- 证据：同一配置同日真实运行的逐字记录
+  [before](runs_v2/before/live_transcript_before.txt) / [after](runs_v2/after/live_transcript_after.txt)，
+  指标对比 [comparison_v2.json](runs_v2/comparison_v2.json)，产物哈希 [hashes_v2.json](runs_v2/hashes_v2.json)。
+- 未在线复现：d4 网络重试（mock 单测）、d7 长间隔补窗（离线夹具）。分档质量（d8）仍是
+  开发 Agent 自评（model_only），未经人工复核。
+- 对 V1 的更正：V1 case c6 与"回归 4"把"同日复跑 17 篇全部命中 seen、0 新增"判为通过，
+  实际是 seen 饿死缺陷的表现（窗口内还有 70 篇未读）。V1 判断文件保留原样作历史记录，
+  以 V2 为准。
+
+## V1 历史状态（2026-09-19，v0.1.1）
 
 - **8/8 用例通过，0 硬失败**；逐题判断见 [judgments_v1.jsonl](judgments_v1.jsonl)，
   汇总见 [summary_v1.json](summary_v1.json)。

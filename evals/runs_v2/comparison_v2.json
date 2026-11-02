@@ -1,0 +1,17 @@
+{
+ "schema_version": "1.0",
+ "date": "2026-11-02",
+ "input": "config.example.json（sepsis biomarker / machine learning sepsis / early warning score，retmax=6，reldate=7）；拼写错误配置见 before/ 与 after/ transcript",
+ "before": {"version": "v0.1.1 (git d3eff9a)", "transcript": "before/live_transcript_before.txt"},
+ "after": {"version": "v0.2.0 工作区", "transcript": "after/live_transcript_after.txt"},
+ "metrics": [
+  {"name": "首跑后窗口内可见的未读新文献", "definition": "首次运行后，日报收录 + 明示顺延的篇数（去重后）", "before": "17（去重后 87 篇中其余 70 篇既不出现也无提示）", "after": "87 = 收录 18 + 明示顺延 69"},
+  {"name": "同日复跑新增篇数（模拟第二天）", "definition": "seen 已含首跑结果时，第二次运行新收录的篇数", "before": 0, "after": 18, "note": "改前 retmax 截断发生在去重之前，前 6 名已读就永远 0 新增（seen 饿死）；v0.1.1 回归把这个 0 当成了‘去重生效’的通过证据"},
+  {"name": "首跑候选中近 2 天入库（edat ≥ 2026-10-31）占比", "definition": "esummary 查询每篇候选的 entrez 日期", "before": "7/17 (41%)", "after": "13/18 (72%)", "note": "改前 sort=pub_date 把出版日期标为 2026 Dec 的 ahead-of-print 排第一；改后按 Most Recent（入库时间）"},
+  {"name": "拼写错误关键词的提示", "definition": "'sepsis biomarkr' 被 PubMed 静默退化为只检索 sepsis（312 条命中）", "before": "无任何提示", "after": "[warn] 词“biomarkr”在 PubMed 中不存在，已被忽略；日报统计区同步显示 ⚠️ 与 PubMed 实际执行的检索式"},
+  {"name": "网络瞬断", "definition": "改前基线 run3 真实遇到 SSL UNEXPECTED_EOF", "before": "直接 exit 4", "after": "最多 2 次退避重试（单测 mock 覆盖；改后真实运行中未再遇到瞬断，未在线复现）"},
+  {"name": "定时抓取未分档时重复抓取", "definition": "--no-commit 连跑两次", "before": "无此模式：每次抓取即写 seen，被覆盖的候选清单永久丢失", "after": "seen sha256 前后不变，两次候选 PMID 一致（12 篇）"},
+  {"name": "撤稿/勘误/预印本标记", "definition": "对 5 个真实 PMID 的 efetch XML 解析", "before": "无标记字段", "after": "5/5 与 PubMed 出版类型一致（见 after/live_flags_check.txt）"}
+ ],
+ "requests": {"before": "4+3+1(失败)+3 = 11 次", "after": "4+4+3+4+4 = 19 次，另 esummary 2 次、flags 核验 2 次、调研探测若干次，均间隔 ≥1.1s"}
+}

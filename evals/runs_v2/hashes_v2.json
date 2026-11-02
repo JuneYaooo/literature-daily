@@ -1,0 +1,19 @@
+{
+ "runs_v2/before/live_transcript_before.txt": "c9e2bb59e818fc19730f0f2b7670394847fa2c6be91ee23902610b2bdc6175be",
+ "runs_v2/before/live_candidates_run1.json": "5a309c763fea14d31351e0e50211cfb8713f49d5ac9c32347043ad62468b04cf",
+ "runs_v2/after/live_transcript_after.txt": "1b04e32e0736f1b462fc109898b042fdb27c490b20c81fc9f736761724af1e64",
+ "runs_v2/after/live_candidates_run1.json": "6873795364502f265769ac35636ff25675c7438950db93fc3edc326446612477",
+ "runs_v2/after/live_candidates_run2.json": "361a6dc84fae12b5291e9f83e06096ebcc76c9ad1e80b62c23625d2bae9a1bb0",
+ "runs_v2/after/live_candidates_run4_nocommit.json": "f835baf8f906fe6be60b2606112ebd1f21e91f37641cbaf3b2d2e3be93e2f043",
+ "runs_v2/after/live_candidates_typo.json": "e515170b11aa5d94dd45895017d76685e9841d30cc24c9e70f47e40b9d7cf74d",
+ "runs_v2/after/live_verdicts_run2.json": "71d88c073cc1fd94e57615106363e8cc16bb55877fd8b56e13ecc9f163142f08",
+ "runs_v2/after/live_digest_run2_2026-11-02.md": "81e7079ebe1c9405123c2ca43ee12d2181391203efa06576b053386647934465",
+ "runs_v2/after/typo_warning_render_demo.md": "0e6912bcd15cc0f5266c22c744fcda0eb30227f7d729c1dcaede20302a81c2e2",
+ "runs_v2/after/live_flags_check.txt": "1fdfd5da8d6049cf7c0be286698dd56eba28e80372d90643f5da08d397c9d0e7",
+ "runs_v2/comparison_v2.json": "891223cce4f53492a16b727a828a681a8a2181e51e5826e19b66e6b596b9503a",
+ "offline_determinism": {
+  "offline_candidates_v2.json": "4e2002efb09a4f7cd9411264f1b2102b3fad20da0f929776ee684053c0c07a18",
+  "offline_digest_v2.md": "0df103c9a24d9b8138193cabe62da0c83de5bb2258a9129c5447b1c6e99a79d9",
+  "command": "fetch_pubmed.py evals/fixtures/config_offline_v1.json --offline evals/fixtures/offline_v1 --date 2026-09-19；render_digest.py + evals/fixtures/verdicts_good_v1.json；两次运行一致"
+ }
+}

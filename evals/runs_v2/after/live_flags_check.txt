@@ -1,0 +1,6 @@
+# 真实 efetch XML 标记核验（2026-11-02，5 个真实 PMID）
+42969068 | pubtypes= ['Journal Article', 'Retraction Notice'] | refs= ['RetractionOf'] | flags= ['notice']
+42966956 | pubtypes= ['Journal Article', 'Preprint'] | refs= [] | flags= ['preprint']
+42968920 | pubtypes= ['Published Erratum'] | refs= ['ErratumFor'] | flags= ['notice']
+42965043 | pubtypes= ['Expression of Concern'] | refs= ['ExpressionOfConcernFor'] | flags= ['notice']
+42298051 | pubtypes= ['Journal Article', 'Retracted Publication'] | refs= ['RetractionIn'] | flags= ['retracted']

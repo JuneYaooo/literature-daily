@@ -1,0 +1,29 @@
+# v0.1.1 基线（改前）真实运行 2026-11-02T16:50:46Z · git d3eff9a
+## run1：config.example.json，空 seen
+[fetch] 关键词 3 个 · reldate=7 天 · retmax=6 · PubMed（间隔 1.1s）
+[esearch] “sepsis biomarker” → 近 7 天命中 63，取回 6
+[esearch] “machine learning sepsis” → 近 7 天命中 13，取回 6
+[esearch] “early warning score” → 近 7 天命中 18，取回 6
+[dedup] 本轮去重前 17 篇 · 已看过跳过 0 篇 · 新增 17 篇
+[efetch] 取回 17 篇元数据与摘要
+[done] 候选清单 → <scratch>/c1.json
+[done] seen 已原子写回 → <scratch>/seen.json（累计 17 篇）
+## run2：同日立即复跑（模拟第二天，窗口内仍有大量未读）
+[fetch] 关键词 3 个 · reldate=7 天 · retmax=6 · PubMed（间隔 1.1s）
+[esearch] “sepsis biomarker” → 近 7 天命中 63，取回 6
+[esearch] “machine learning sepsis” → 近 7 天命中 13，取回 6
+[esearch] “early warning score” → 近 7 天命中 18，取回 6
+[dedup] 本轮去重前 17 篇 · 已看过跳过 17 篇 · 新增 0 篇
+[done] 候选清单 → <scratch>/c2.json
+[done] seen 已原子写回 → <scratch>/seen.json（累计 17 篇）
+## run3：带拼写错误的关键词 sepsis biomarkr
+[error] 请求失败（esearch）：<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>
+[fetch] 关键词 2 个 · reldate=7 天 · retmax=6 · PubMed（间隔 1.1s）
+## run3 重试：带拼写错误的关键词 sepsis biomarkr
+[fetch] 关键词 2 个 · reldate=7 天 · retmax=6 · PubMed（间隔 1.1s）
+[esearch] “sepsis biomarkr” → 近 7 天命中 312，取回 6
+[esearch] “machine learning sepsis” → 近 7 天命中 13，取回 6
+[dedup] 本轮去重前 12 篇 · 已看过跳过 0 篇 · 新增 12 篇
+[efetch] 取回 12 篇元数据与摘要
+[done] 候选清单 → <scratch>/c3.json
+exit=0

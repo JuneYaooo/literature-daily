@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "suite": "literature-daily-v2",
+  "case_file": "cases_v2.jsonl",
+  "case_file_sha256": "4c4412437a6cb952fa9c698389425b95b5f1fe1e6cc84ddabb87fa9ff7be2be1",
+  "rubric_file": "rubric_v2.md",
+  "judgments_file": "judgments_v2.jsonl",
+  "summary_file": "summary_v2.json",
+  "conditions": {
+    "baseline": "v0.1.1（git d3eff9a，改动前原样运行）",
+    "skill": "v0.2.0（本次提交）"
+  },
+  "comparison_note": "同一配置 config.example.json、同日（2026-11-02）先跑 baseline 再跑 skill；PubMed 数据在两次之间约 8 分钟，命中数一致（63/13/18）。用例针对本次改动设计，baseline 0/8 属预期，不代表 v0.1.1 的版权/解析/渲染能力退化（那些由 V1 与单测覆盖）。",
+  "layers": {
+    "live": "真实 PubMed E-utilities，无 api_key，请求间隔 1.1s；d1/d2/d3/d5/d6/d8 的证据为逐字终端记录与产物",
+    "unit": "python3 -m unittest discover tests（61 项，离线）；d4 重试为 mock、d7 补窗为离线夹具，均未在线复现"
+  },
+  "judging": {
+    "judge": "开发 Agent 自评（Claude Opus 5.5 / Claude Code），review_status=model_only",
+    "blind_condition_labels": false,
+    "runs_per_case": 1,
+    "human_review": "未进行；d8 分档质量尤需医学背景人工抽查"
+  },
+  "current_run": {
+    "status": "completed",
+    "date": "2026-11-02",
+    "model": "Claude Opus 5.5（Claude Code）",
+    "skill_version": "0.2.0",
+    "environment": {
+      "os": "macOS 26.2 arm64",
+      "python": "3.12.9",
+      "network": "可访问 eutils.ncbi.nlm.nih.gov"
+    },
+    "artifacts": [
+      "runs_v2/before/live_transcript_before.txt",
+      "runs_v2/before/live_candidates_run1.json",
+      "runs_v2/after/live_transcript_after.txt",
+      "runs_v2/after/live_candidates_run1.json",
+      "runs_v2/after/live_candidates_run2.json",
+      "runs_v2/after/live_candidates_run4_nocommit.json",
+      "runs_v2/after/live_candidates_typo.json",
+      "runs_v2/after/live_verdicts_run2.json",
+      "runs_v2/after/live_digest_run2_2026-11-02.md",
+      "runs_v2/after/typo_warning_render_demo.md",
+      "runs_v2/after/live_flags_check.txt",
+      "runs_v2/comparison_v2.json"
+    ]
+  }
+}

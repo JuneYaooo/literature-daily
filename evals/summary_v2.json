@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "status": "completed",
+  "dimensions": [
+    "coverage",
+    "query_fidelity",
+    "integrity",
+    "robustness",
+    "evidence"
+  ],
+  "conditions": {
+    "baseline": {
+      "judgment_count": 8,
+      "unique_case_count": 8,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "pass_rate_wilson_95": [
+        0.0,
+        0.3244
+      ],
+      "critical_failure_count": 4,
+      "dimension_means_0_to_4": {
+        "coverage": 1.25,
+        "query_fidelity": 1.75,
+        "integrity": 1.75,
+        "robustness": 1.75,
+        "evidence": 3.875
+      }
+    },
+    "skill": {
+      "judgment_count": 8,
+      "unique_case_count": 8,
+      "pass_count": 8,
+      "pass_rate": 1.0,
+      "pass_rate_wilson_95": [
+        0.6756,
+        1.0
+      ],
+      "critical_failure_count": 0,
+      "dimension_means_0_to_4": {
+        "coverage": 3.625,
+        "query_fidelity": 3.125,
+        "integrity": 3.125,
+        "robustness": 3.25,
+        "evidence": 3.625
+      }
+    }
+  },
+  "skill_minus_baseline_pass_rate": 1.0,
+  "interpretation_note": "baseline = v0.1.1 (git d3eff9a)，skill = v0.2.0，同一输入。通过 = 无硬失败且 failed_required_checks 为空；维度分仅作诊断。判定为开发 Agent 自评（model_only）；d4/d7 的改后结果来自 mock/离线单测，未在线复现。"
+}
