@@ -1,68 +1,228 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="t d">
-  <title id="t">医学文献日报 literature-daily</title>
-  <desc id="d">订阅 PubMed 关键词，每天一份按研究方向分好档、带中文一句话导读的文献日报</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">医学文献日报 literature-daily</title>
+  <desc id="desc">订阅 PubMed 关键词，新文献像纸片一样流进漏斗，去重后变成一份分好三档、带中文导读的日报。</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0F2620"/>
-      <stop offset="1" stop-color="#173A31"/>
+      <stop offset="0" stop-color="#0E2A24"/>
+      <stop offset="0.55" stop-color="#143B32"/>
+      <stop offset="1" stop-color="#1D4A3D"/>
     </linearGradient>
-    <filter id="sh" x="-10%" y="-10%" width="130%" height="140%">
-      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.35"/>
+    <radialGradient id="glowCoral" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#F3845F" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#F3845F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowMint" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6FD3AE" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#6FD3AE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#F2C14E" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#F2C14E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D9F2E6"/>
+    </linearGradient>
+    <linearGradient id="cardHead" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F58A63"/>
+      <stop offset="1" stop-color="#E0603F"/>
+    </linearGradient>
+    <linearGradient id="funnel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8FE3C4"/>
+      <stop offset="1" stop-color="#3FA37F"/>
+    </linearGradient>
+    <linearGradient id="funnelIn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0F2E27" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#0F2E27" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EEF1EA"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#04110D" flood-opacity="0.35"/>
+      <feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#04110D" flood-opacity="0.45"/>
     </filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#04110D" flood-opacity="0.35"/>
+    </filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0"/>
+    </filter>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#9ED9C2" fill-opacity="0.16"/>
+    </pattern>
+    <clipPath id="cardClip"><rect x="0" y="0" width="330" height="372" rx="22"/></clipPath>
   </defs>
-  <rect width="1200" height="400" fill="url(#bg)"/>
-  <!-- 细点阵背景 -->
-  <g fill="#FFFFFF" opacity="0.05">
-    <circle cx="640" cy="40" r="2"/><circle cx="680" cy="40" r="2"/><circle cx="720" cy="40" r="2"/><circle cx="760" cy="40" r="2"/>
-    <circle cx="640" cy="80" r="2"/><circle cx="680" cy="80" r="2"/><circle cx="720" cy="80" r="2"/><circle cx="760" cy="80" r="2"/>
-    <circle cx="640" cy="320" r="2"/><circle cx="680" cy="320" r="2"/><circle cx="720" cy="320" r="2"/><circle cx="760" cy="320" r="2"/>
-    <circle cx="640" cy="360" r="2"/><circle cx="680" cy="360" r="2"/><circle cx="720" cy="360" r="2"/><circle cx="760" cy="360" r="2"/>
-  </g>
-  <rect x="0" y="0" width="8" height="400" fill="#E8734A"/>
 
-  <g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
-    <text x="72" y="96" font-size="16" font-weight="600" letter-spacing="3" fill="#E8C94B">PUBMED · AGENT SKILL · 每日文献</text>
-    <text x="70" y="168" font-size="58" font-weight="800" fill="#F5F1E6">医学文献日报</text>
-    <text x="74" y="208" font-size="24" font-weight="500" fill="#7FAE9B" font-family="Menlo,'SF Mono',Consolas,monospace">literature-daily</text>
-    <text x="72" y="262" font-size="22" fill="#D7E9DF">订阅 PubMed 关键词，每天一份分好档、</text>
-    <text x="72" y="296" font-size="22" fill="#D7E9DF">带中文一句话导读的文献清单。</text>
+  <!-- background -->
+  <rect width="1280" height="560" rx="28" fill="url(#bg)"/>
+  <circle cx="1080" cy="80" r="330" fill="url(#glowCoral)"/>
+  <circle cx="760" cy="520" r="300" fill="url(#glowMint)"/>
+  <circle cx="120" cy="40" r="260" fill="url(#glowGold)"/>
+  <rect x="640" y="0" width="640" height="560" fill="url(#dots)"/>
+  <rect width="1280" height="560" rx="28" filter="url(#grain)"/>
+  <path d="M0 470 C 260 420, 420 540, 700 492 S 1100 430, 1280 470 L1280 560 L0 560 Z" fill="#0B231E" fill-opacity="0.35"/>
 
-    <g font-size="15" fill="#BFEAD2">
-      <rect x="72" y="326" width="96" height="32" rx="16" fill="none" stroke="#3F7A68"/>
-      <text x="120" y="347" text-anchor="middle">增量去重</text>
-      <rect x="180" y="326" width="112" height="32" rx="16" fill="none" stroke="#3F7A68"/>
-      <text x="236" y="347" text-anchor="middle">检索式告警</text>
-      <rect x="304" y="326" width="96" height="32" rx="16" fill="none" stroke="#3F7A68"/>
-      <text x="352" y="347" text-anchor="middle">撤稿标记</text>
-      <rect x="412" y="326" width="96" height="32" rx="16" fill="none" stroke="#3F7A68"/>
-      <text x="460" y="347" text-anchor="middle">本机运行</text>
+  <!-- left copy -->
+  <g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+    <g transform="translate(72 92)">
+      <rect width="262" height="34" rx="17" fill="#FFFFFF" fill-opacity="0.08" stroke="#9ED9C2" stroke-opacity="0.35"/>
+      <circle cx="20" cy="17" r="5" fill="#F2C14E"/>
+      <text x="34" y="23" font-size="15" font-weight="600" fill="#F2DFA6" letter-spacing="2">PUBMED · AGENT SKILL</text>
     </g>
+    <text x="68" y="216" font-size="80" font-weight="800" fill="url(#titleGrad)" letter-spacing="3">医学文献日报</text>
+    <text x="74" y="268" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="24" fill="#8FCFB5" letter-spacing="1">literature-daily</text>
+    <text x="72" y="322" font-size="25" fill="#E3EFE9">订阅 PubMed 关键词，每天一份</text>
+    <text x="72" y="360" font-size="25" fill="#E3EFE9"><tspan fill="#FFB496" font-weight="700">分好三档</tspan>、带<tspan fill="#FFE08A" font-weight="700">中文一句话导读</tspan>的文献清单</text>
 
-    <!-- 右侧：日报卡片示意 -->
-    <g transform="translate(812 52)">
-      <rect x="22" y="18" width="320" height="296" rx="14" fill="#2A5246" opacity="0.55"/>
-      <g filter="url(#sh)">
-        <rect x="0" y="0" width="320" height="296" rx="14" fill="#FAF8F3"/>
+    <!-- feature chips -->
+    <g font-size="16" font-weight="600" fill="#EAF5F0">
+      <g transform="translate(72 404)">
+        <rect width="132" height="44" rx="14" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.14"/>
+        <circle cx="24" cy="22" r="11" fill="#6FD3AE" fill-opacity="0.22"/>
+        <path d="M18 22 l4 4 l8 -8" fill="none" stroke="#8FE3C4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="44" y="28">只给新的</text>
       </g>
-      <rect x="0" y="0" width="320" height="52" rx="14" fill="#E8734A"/>
-      <rect x="0" y="38" width="320" height="14" fill="#E8734A"/>
-      <text x="22" y="33" font-size="18" font-weight="700" fill="#FFFFFF">今日文献日报</text>
-      <text x="298" y="33" font-size="13" fill="#FFE9DF" text-anchor="end">PubMed</text>
-
-      <circle cx="30" cy="86" r="7" fill="#D9473A"/>
-      <text x="46" y="91" font-size="15" font-weight="700" fill="#10241E">必读</text>
-      <rect x="46" y="104" width="240" height="9" rx="4.5" fill="#D9DED8"/>
-      <rect x="46" y="120" width="190" height="9" rx="4.5" fill="#E6E9E4"/>
-
-      <circle cx="30" cy="158" r="7" fill="#E8C94B"/>
-      <text x="46" y="163" font-size="15" font-weight="700" fill="#10241E">值得扫一眼</text>
-      <rect x="46" y="176" width="220" height="9" rx="4.5" fill="#D9DED8"/>
-      <rect x="46" y="192" width="170" height="9" rx="4.5" fill="#E6E9E4"/>
-
-      <circle cx="30" cy="230" r="7" fill="#B8BEB9"/>
-      <text x="46" y="235" font-size="15" font-weight="700" fill="#5E6A64">可跳过</text>
-      <rect x="46" y="248" width="200" height="9" rx="4.5" fill="#E6E9E4"/>
-      <rect x="46" y="264" width="140" height="9" rx="4.5" fill="#EEF0EC"/>
+      <g transform="translate(216 404)">
+        <rect width="132" height="44" rx="14" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.14"/>
+        <circle cx="24" cy="22" r="11" fill="#F3845F" fill-opacity="0.22"/>
+        <rect x="17" y="15" width="14" height="3.4" rx="1.7" fill="#FF9D7A"/>
+        <rect x="17" y="20.3" width="10" height="3.4" rx="1.7" fill="#F2C14E"/>
+        <rect x="17" y="25.6" width="6" height="3.4" rx="1.7" fill="#B9C7C1"/>
+        <text x="44" y="28">三档分级</text>
+      </g>
+      <g transform="translate(360 404)">
+        <rect width="148" height="44" rx="14" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.14"/>
+        <circle cx="24" cy="22" r="11" fill="#F2C14E" fill-opacity="0.22"/>
+        <circle cx="22.5" cy="20.5" r="5" fill="none" stroke="#FFD66E" stroke-width="2.2"/>
+        <path d="M26.2 24.2 l4 4" stroke="#FFD66E" stroke-width="2.4" stroke-linecap="round"/>
+        <text x="44" y="28">检索式体检</text>
+      </g>
+      <g transform="translate(520 404)">
+        <rect width="132" height="44" rx="14" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.14"/>
+        <circle cx="24" cy="22" r="11" fill="#E8584A" fill-opacity="0.25"/>
+        <path d="M24 14 l7.5 13 h-15 z" fill="none" stroke="#FF8C7E" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="23" y="18.5" width="2" height="5" rx="1" fill="#FF8C7E"/>
+        <circle cx="24" cy="25.4" r="1.1" fill="#FF8C7E"/>
+        <text x="44" y="28">撤稿打标</text>
+      </g>
     </g>
+  </g>
+
+  <!-- illustration: papers stream into a funnel -->
+  <path d="M700 96 C 760 70, 812 120, 812 196 L 812 236" fill="none" stroke="#9ED9C2" stroke-opacity="0.35" stroke-width="2" stroke-dasharray="3 7" stroke-linecap="round"/>
+
+  <g filter="url(#soft)">
+    <g transform="translate(676 66) rotate(-14)">
+      <rect width="62" height="78" rx="7" fill="url(#paper)" fill-opacity="0.55"/>
+      <rect x="9" y="12" width="30" height="5" rx="2.5" fill="#2E6E5C" fill-opacity="0.5"/>
+      <rect x="9" y="24" width="44" height="3.5" rx="1.75" fill="#C9D3CE"/>
+      <rect x="9" y="32" width="38" height="3.5" rx="1.75" fill="#C9D3CE"/>
+      <rect x="9" y="40" width="42" height="3.5" rx="1.75" fill="#C9D3CE"/>
+    </g>
+    <g transform="translate(748 92) rotate(9)">
+      <rect width="66" height="84" rx="7" fill="url(#paper)" fill-opacity="0.8"/>
+      <rect x="9" y="12" width="34" height="5" rx="2.5" fill="#E0603F" fill-opacity="0.75"/>
+      <rect x="9" y="25" width="48" height="3.5" rx="1.75" fill="#C9D3CE"/>
+      <rect x="9" y="33" width="40" height="3.5" rx="1.75" fill="#C9D3CE"/>
+      <rect x="9" y="41" width="46" height="3.5" rx="1.75" fill="#C9D3CE"/>
+      <rect x="9" y="49" width="30" height="3.5" rx="1.75" fill="#C9D3CE"/>
+    </g>
+    <g transform="translate(790 152) rotate(-6)">
+      <rect width="70" height="88" rx="7" fill="url(#paper)"/>
+      <rect x="9" y="12" width="36" height="5" rx="2.5" fill="#2E6E5C"/>
+      <rect x="9" y="26" width="52" height="3.5" rx="1.75" fill="#C9D3CE"/>
+      <rect x="9" y="34" width="44" height="3.5" rx="1.75" fill="#C9D3CE"/>
+      <rect x="9" y="42" width="48" height="3.5" rx="1.75" fill="#C9D3CE"/>
+      <rect x="9" y="50" width="34" height="3.5" rx="1.75" fill="#C9D3CE"/>
+      <text x="9" y="76" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="9" fill="#7C8B85">PMID</text>
+    </g>
+  </g>
+
+  <!-- funnel -->
+  <g filter="url(#soft)">
+    <ellipse cx="814" cy="262" rx="78" ry="16" fill="#2E6E5C"/>
+    <path d="M736 262 L 798 344 L 798 384 Q 814 394 830 384 L 830 344 L 892 262 Z" fill="url(#funnel)"/>
+    <ellipse cx="814" cy="262" rx="78" ry="16" fill="#0F2E27"/>
+    <ellipse cx="814" cy="262" rx="70" ry="12" fill="url(#funnelIn)"/>
+    <path d="M748 274 L 802 344" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round"/>
+    <text x="814" y="318" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="700" fill="#0E2A24">去重</text>
+  </g>
+  <!-- drops into card -->
+  <path d="M814 394 C 814 430, 846 448, 884 448" fill="none" stroke="#8FE3C4" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 8"/>
+  <path d="M878 441 l10 7 l-10 7" fill="none" stroke="#8FE3C4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- digest card stack -->
+  <g transform="translate(900 92)">
+    <rect x="22" y="18" width="330" height="372" rx="22" fill="#2D5F50" fill-opacity="0.55" transform="rotate(4 165 186)"/>
+    <g filter="url(#shadow)">
+      <rect width="330" height="372" rx="22" fill="#FBFAF5"/>
+    </g>
+    <g clip-path="url(#cardClip)" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+      <rect width="330" height="74" fill="url(#cardHead)"/>
+      <circle cx="300" cy="10" r="46" fill="#FFFFFF" fill-opacity="0.10"/>
+      <g transform="translate(22 20)">
+        <rect width="34" height="34" rx="9" fill="#FFFFFF" fill-opacity="0.22"/>
+        <rect x="9" y="7" width="16" height="20" rx="2.5" fill="#FFFFFF"/>
+        <rect x="12" y="12" width="10" height="2.2" rx="1.1" fill="#E0603F"/>
+        <rect x="12" y="16.5" width="10" height="2.2" rx="1.1" fill="#F2B8A3"/>
+        <rect x="12" y="21" width="7" height="2.2" rx="1.1" fill="#F2B8A3"/>
+      </g>
+      <text x="68" y="45" font-size="21" font-weight="700" fill="#FFFFFF">今日文献日报</text>
+      <rect x="232" y="24" width="78" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.2"/>
+      <text x="271" y="43" text-anchor="middle" font-size="13" font-weight="600" fill="#FFFFFF">候选 18 篇</text>
+
+      <!-- must read -->
+      <g transform="translate(22 96)">
+        <rect width="286" height="92" rx="14" fill="#FDEBE5"/>
+        <rect width="5" height="92" rx="2.5" fill="#E2553F"/>
+        <circle cx="26" cy="24" r="7" fill="#E2553F"/>
+        <text x="42" y="30" font-size="16" font-weight="700" fill="#7A2A1C">必读</text>
+        <text x="266" y="30" text-anchor="end" font-size="16" font-weight="800" fill="#E2553F">3</text>
+        <rect x="18" y="44" width="236" height="7" rx="3.5" fill="#E7B5A6"/>
+        <rect x="18" y="58" width="184" height="7" rx="3.5" fill="#EFCABE"/>
+        <rect x="18" y="72" width="30" height="12" rx="4" fill="#E2553F" fill-opacity="0.18"/>
+        <text x="33" y="81.5" text-anchor="middle" font-size="8.5" font-weight="700" fill="#B13D2A">导读</text>
+        <rect x="54" y="74.5" width="150" height="7" rx="3.5" fill="#F3D8CF"/>
+      </g>
+      <!-- worth a look -->
+      <g transform="translate(22 202)">
+        <rect width="286" height="72" rx="14" fill="#FDF4DC"/>
+        <rect width="5" height="72" rx="2.5" fill="#E7AE2B"/>
+        <circle cx="26" cy="24" r="7" fill="#E7AE2B"/>
+        <text x="42" y="30" font-size="16" font-weight="700" fill="#6B4C08">值得扫一眼</text>
+        <text x="266" y="30" text-anchor="end" font-size="16" font-weight="800" fill="#C98F12">7</text>
+        <rect x="18" y="44" width="214" height="7" rx="3.5" fill="#EBD69C"/>
+        <rect x="18" y="57" width="160" height="7" rx="3.5" fill="#F1E2B6"/>
+      </g>
+      <!-- skip -->
+      <g transform="translate(22 288)">
+        <rect width="286" height="60" rx="14" fill="#F0F2EF"/>
+        <rect width="5" height="60" rx="2.5" fill="#A5B1AC"/>
+        <circle cx="26" cy="22" r="7" fill="#A5B1AC"/>
+        <text x="42" y="28" font-size="16" font-weight="700" fill="#5D6A65">可跳过</text>
+        <text x="266" y="28" text-anchor="end" font-size="16" font-weight="800" fill="#8A9792">8</text>
+        <rect x="18" y="42" width="190" height="6" rx="3" fill="#D8DEDB"/>
+        <path d="M14 45 H 214" stroke="#A5B1AC" stroke-width="1.6"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- stamp: marked read -->
+  <g transform="translate(1186 452) rotate(-10)" filter="url(#soft)">
+    <circle r="40" fill="#2E8A68"/>
+    <circle r="33" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <path d="M-14 -6 l9 9 l18 -18" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text y="22" text-anchor="middle" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">已读</text>
+  </g>
+
+  <!-- floating lens + bubble -->
+  <g transform="translate(930 480)" filter="url(#soft)" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+    <rect width="160" height="54" rx="16" fill="#FFF6E0"/>
+    <path d="M40 0 l8 -12 l10 12 z" fill="#FFF6E0"/>
+    <text x="16" y="24" font-size="13" font-weight="700" fill="#8A5A00">中文导读 · 推荐理由</text>
+    <text x="16" y="42" font-size="12" fill="#8C7A55">一句话讲清设计与样本</text>
   </g>
 </svg>

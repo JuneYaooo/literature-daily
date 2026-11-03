@@ -1,0 +1,275 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="880" viewBox="0 0 1280 880" role="img" aria-labelledby="title desc">
+  <title id="title">关键判断逻辑</title>
+  <desc id="desc">四个判断：先去重再截取、几天没跑自动补窗、检索式被 PubMed 改写时告警、落盘前三道校验关。</desc>
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBF8F1"/><stop offset="1" stop-color="#F0EDE3"/></linearGradient>
+    <radialGradient id="glowA" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F8C9A8" stop-opacity="0.45"/><stop offset="1" stop-color="#F8C9A8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#A9DCC6" stop-opacity="0.45"/><stop offset="1" stop-color="#A9DCC6" stop-opacity="0"/></radialGradient>
+    <filter id="card" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1C3A31" flood-opacity="0.07"/>
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#1C3A31" flood-opacity="0.11"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#1C3A31" flood-opacity="0.18"/>
+    </filter>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="#FBE3B0"/><rect width="3" height="6" fill="#F6CF7A"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="880" rx="28" fill="url(#bgGrad)"/>
+  <circle cx="1180" cy="60" r="280" fill="url(#glowA)"/>
+  <circle cx="80" cy="820" r="280" fill="url(#glowB)"/>
+  <g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+    <text x="40" y="66" font-size="30" font-weight="800" fill="#173A31">关键判断逻辑</text>
+    <text x="40" y="98" font-size="15.5" fill="#5F7069">脚本里写死的四条规则，决定哪些文献进日报、日报何时才算写成</text>
+
+    <g transform="translate(40 128)">
+      <rect width="588" height="336" rx="22" fill="#FFFFFF" filter="url(#card)"/>
+      <rect x="24" y="24" width="34" height="34" rx="11" fill="#2E8A68"/>
+      <text x="41" y="47" text-anchor="middle" font-size="17" font-weight="800" fill="#FFFFFF">A</text>
+      <text x="72" y="48" font-size="20" font-weight="800" fill="#173A31">先去重，再截取</text>
+      <text x="24" y="84" font-size="13.5" fill="#6B7A74">同一天再跑一次：窗口内命中 94 篇，跨关键词去重后剩 87 篇，每个点是一篇</text>
+      <circle cx="36.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M33.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="59.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M56.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="82.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M79.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="105.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M102.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="128.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M125.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="151.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M148.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="174.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M171.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="197.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M194.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="220.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M217.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="243.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M240.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="266.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M263.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="289.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M286.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="312.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M309.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="335.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M332.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="358.5" cy="124.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M355.0 124.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="36.5" cy="147.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M33.0 147.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="59.5" cy="147.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M56.0 147.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="82.5" cy="147.5" r="8.5" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <path d="M79.0 147.5 l2.5 2.5 l4.5 -4.5" fill="none" stroke="#8E9C96" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="105.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="128.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="151.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="174.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="197.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="220.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="243.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="266.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="289.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="312.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="335.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="358.5" cy="147.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="36.5" cy="170.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="59.5" cy="170.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="82.5" cy="170.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="105.5" cy="170.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="128.5" cy="170.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="151.5" cy="170.5" r="8.5" fill="#2E8A68"/>
+      <circle cx="174.5" cy="170.5" r="8.5" fill="#F4B740"/>
+      <circle cx="197.5" cy="170.5" r="8.5" fill="#F4B740"/>
+      <circle cx="220.5" cy="170.5" r="8.5" fill="#F4B740"/>
+      <circle cx="243.5" cy="170.5" r="8.5" fill="#F4B740"/>
+      <circle cx="266.5" cy="170.5" r="8.5" fill="#F4B740"/>
+      <circle cx="289.5" cy="170.5" r="8.5" fill="#F4B740"/>
+      <circle cx="312.5" cy="170.5" r="8.5" fill="#F4B740"/>
+      <circle cx="335.5" cy="170.5" r="8.5" fill="#F4B740"/>
+      <circle cx="358.5" cy="170.5" r="8.5" fill="#F4B740"/>
+      <circle cx="36.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="59.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="82.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="105.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="128.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="151.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="174.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="197.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="220.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="243.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="266.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="289.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="312.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="335.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="358.5" cy="193.5" r="8.5" fill="#F4B740"/>
+      <circle cx="36.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="59.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="82.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="105.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="128.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="151.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="174.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="197.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="220.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="243.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="266.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="289.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="312.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="335.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="358.5" cy="216.5" r="8.5" fill="#F4B740"/>
+      <circle cx="36.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="59.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="82.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="105.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="128.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="151.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="174.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="197.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="220.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="243.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="266.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="289.5" cy="239.5" r="8.5" fill="#F4B740"/>
+      <circle cx="409" cy="127" r="9" fill="#E3E8E5" stroke="#B6C2BD" stroke-width="1.6"/>
+      <text x="428" y="133" font-size="22" font-weight="800" fill="#173A31">18</text>
+      <text x="460" y="132" font-size="14" font-weight="700" fill="#2F4740">已读，跳过</text>
+      <text x="428" y="152" font-size="12" fill="#7A8883">上一次已经收录过</text>
+      <circle cx="409" cy="179" r="9" fill="#2E8A68"/>
+      <text x="428" y="185" font-size="22" font-weight="800" fill="#173A31">18</text>
+      <text x="460" y="184" font-size="14" font-weight="700" fill="#2F4740">本期收录</text>
+      <text x="428" y="204" font-size="12" fill="#7A8883">3 个词 × 每词 6 篇</text>
+      <circle cx="409" cy="231" r="9" fill="#F4B740"/>
+      <text x="428" y="237" font-size="22" font-weight="800" fill="#173A31">51</text>
+      <text x="460" y="236" font-size="14" font-weight="700" fill="#2F4740">顺延</text>
+      <text x="428" y="256" font-size="12" fill="#7A8883">不记已读，下次再来</text>
+      <rect x="24" y="270" width="540" height="44" rx="12" fill="#EEF7F2"/>
+      <text x="42" y="297" font-size="13.5" fill="#2F5A4B"><tspan font-weight="700">为什么先去重：</tspan>先截取再去重，读过的会占掉名额，新文献反而被挤掉</text>
+    </g>
+    <g transform="translate(652 128)">
+      <rect width="588" height="336" rx="22" fill="#FFFFFF" filter="url(#card)"/>
+      <rect x="24" y="24" width="34" height="34" rx="11" fill="#3F6FC6"/>
+      <text x="41" y="47" text-anchor="middle" font-size="17" font-weight="800" fill="#FFFFFF">B</text>
+      <text x="72" y="48" font-size="20" font-weight="800" fill="#173A31">几天没跑，自动补窗</text>
+      <text x="24" y="84" font-size="13.5" fill="#6B7A74">默认看最近 7 天；距上次运行越久，窗口跟着拉长，最多 60 天</text>
+      <line x1="160" y1="262" x2="556" y2="262" stroke="#C9D3CE" stroke-width="1.5"/>
+      <line x1="556.0" y1="258" x2="556.0" y2="266" stroke="#9AA8A2" stroke-width="1.5"/>
+      <text x="556.0" y="284" text-anchor="middle" font-size="11.5" fill="#7A8883">今天</text>
+      <line x1="509.8" y1="258" x2="509.8" y2="266" stroke="#9AA8A2" stroke-width="1.5"/>
+      <text x="509.8" y="284" text-anchor="middle" font-size="11.5" fill="#7A8883">7 天前</text>
+      <line x1="358.0" y1="258" x2="358.0" y2="266" stroke="#9AA8A2" stroke-width="1.5"/>
+      <text x="358.0" y="284" text-anchor="middle" font-size="11.5" fill="#7A8883">30 天前</text>
+      <line x1="160.0" y1="258" x2="160.0" y2="266" stroke="#9AA8A2" stroke-width="1.5"/>
+      <text x="160.0" y="284" text-anchor="middle" font-size="11.5" fill="#7A8883">60 天前</text>
+      <line x1="160.0" y1="112" x2="160.0" y2="258" stroke="#E2553F" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <text x="166.0" y="124" font-size="11" font-weight="700" fill="#C9472F">上限</text>
+      <text x="24" y="139" font-size="14" font-weight="700" fill="#2F4740">隔 1 天再跑</text>
+      <rect x="509.8" y="124" width="46.19999999999999" height="22" rx="11" fill="#9DB8EA"/>
+      <path d="M549.4 119 l-5 -7 h10 z" fill="#E7A91F"/>
+      <text x="499.8" y="139.5" text-anchor="end" font-size="12.5" font-weight="700" fill="#2C56A3">看 7 天</text>
+      <text x="499.8" y="156" text-anchor="end" font-size="11" fill="#7A8883">重叠靠已读名单去重</text>
+      <text x="24" y="185" font-size="14" font-weight="700" fill="#2F4740">隔 10 天再跑</text>
+      <rect x="483.4" y="170" width="72.60000000000002" height="22" rx="11" fill="#3F6FC6"/>
+      <path d="M490.0 165 l-5 -7 h10 z" fill="#E7A91F"/>
+      <text x="473.4" y="185.5" text-anchor="end" font-size="12.5" font-weight="700" fill="#2C56A3">补到 11 天</text>
+      <text x="473.4" y="202" text-anchor="end" font-size="11" fill="#7A8883">间隔 + 1 天</text>
+      <text x="24" y="231" font-size="14" font-weight="700" fill="#2F4740">隔 90 天再跑</text>
+      <rect x="160.0" y="216" width="396.0" height="22" rx="11" fill="#2C56A3"/>
+      <path d="M146.0 227 l-7 -5 v10 z" fill="#E7A91F"/>
+      <text x="174.0" y="231.5" font-size="12.5" font-weight="700" fill="#FFFFFF">封顶 60 天 · 更早的要手动调大窗口</text>
+      <path d="M300 300 l-5 -7 h10 z" fill="#E7A91F"/>
+      <text x="312" y="300" font-size="12" fill="#7A8883">上次运行的位置</text>
+      <rect x="424" y="292" width="22" height="10" rx="5" fill="#3F6FC6"/>
+      <text x="454" y="301" font-size="12" fill="#7A8883">本次检索窗口</text>
+    </g>
+    <g transform="translate(40 488)">
+      <rect width="588" height="336" rx="22" fill="#FFFFFF" filter="url(#card)"/>
+      <rect x="24" y="24" width="34" height="34" rx="11" fill="#E7A91F"/>
+      <text x="41" y="47" text-anchor="middle" font-size="17" font-weight="800" fill="#FFFFFF">C</text>
+      <text x="72" y="48" font-size="20" font-weight="800" fill="#173A31">检索式体检</text>
+      <text x="24" y="84" font-size="13.5" fill="#6B7A74">PubMed 遇到不认识的词会悄悄丢掉、不报错，结果反而更多。下面是真实返回</text>
+      <g font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15">
+        <rect x="24" y="108" width="250" height="40" rx="12" fill="#F2F7F4"/>
+        <text x="40" y="133" fill="#1F5E49">sepsis biomarker</text>
+        <rect x="24" y="162" width="250" height="40" rx="12" fill="#FFF3E6"/>
+        <text x="40" y="187" fill="#5A3B00">sepsis <tspan fill="#D0402B" font-weight="700" text-decoration="underline">biomarkr</tspan></text>
+      </g>
+      <path d="M150 196 q 6 4 12 0 t 12 0 t 12 0 t 12 0" fill="none" stroke="#D0402B" stroke-width="1.6"/>
+      <rect x="296" y="116" width="50.5" height="24" rx="8" fill="#2E8A68"/>
+      <text x="354.5" y="133" font-size="13" font-weight="800" fill="#2E8A68">63 篇</text>
+      <rect x="296" y="170" width="250.0" height="24" rx="8" fill="#E7A91F"/>
+      <text x="536.0" y="187" text-anchor="end" font-size="13" font-weight="800" fill="#FFFFFF">312 篇</text>
+      <text x="296" y="106" font-size="11.5" fill="#7A8883">近 7 天命中</text>
+      <g transform="translate(24 222)">
+        <rect width="540" height="44" rx="12" fill="#FFF4D6" stroke="#F2D58A"/>
+        <rect x="12" y="11" width="52" height="22" rx="7" fill="#E7A91F"/>
+        <text x="38" y="26.5" text-anchor="middle" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="12" font-weight="700" fill="#FFFFFF">warn</text>
+        <text x="76" y="27.5" font-size="13.5" fill="#5A3B00">词“biomarkr”在 PubMed 中不存在，已被忽略（检查拼写）</text>
+      </g>
+      <text x="24" y="296" font-size="12.5" fill="#6B7A74">同样会告警：引号短语没找到被拆词、字段标签无效、</text>
+      <text x="24" y="316" font-size="12.5" fill="#6B7A74">“A AND NOT B” 里的 NOT 被忽略（真实运行中命中直接变 0）</text>
+    </g>
+    <g transform="translate(652 488)">
+      <rect width="588" height="336" rx="22" fill="#FFFFFF" filter="url(#card)"/>
+      <rect x="24" y="24" width="34" height="34" rx="11" fill="#6A52C4"/>
+      <text x="41" y="47" text-anchor="middle" font-size="17" font-weight="800" fill="#FFFFFF">D</text>
+      <text x="72" y="48" font-size="20" font-weight="800" fill="#173A31">落盘前的三道关</text>
+      <text x="24" y="84" font-size="13.5" fill="#6B7A74">Agent 交来的分档和导读先过校验，任何一关不过，日报不写、已读名单也不动</text>
+      <g transform="translate(24 108)">
+        <rect width="120" height="122" rx="14" fill="#F4F1FC"/>
+        <rect x="14" y="14" width="10" height="44" rx="3" fill="#8D74E0"/>
+        <rect x="96" y="14" width="10" height="44" rx="3" fill="#8D74E0"/>
+        <rect x="24" y="22" width="72" height="8" rx="4" fill="#6A52C4"/>
+        <path d="M44 42 l9 9 m0 -9 l-9 9" stroke="#D0402B" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M64 46 l4 4 l8 -8" fill="none" stroke="#2E8A68" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="60" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#3F2E86">撤稿不能当必读</text>
+        <rect x="30" y="92" width="60" height="20" rx="10" fill="#FBE4DF"/>
+        <text x="60" y="106" text-anchor="middle" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="700" fill="#C2402A">退出 3</text>
+      </g>
+
+      <g transform="translate(156 108)">
+        <rect width="120" height="122" rx="14" fill="#F4F1FC"/>
+        <rect x="14" y="14" width="10" height="44" rx="3" fill="#8D74E0"/>
+        <rect x="96" y="14" width="10" height="44" rx="3" fill="#8D74E0"/>
+        <rect x="24" y="22" width="72" height="8" rx="4" fill="#6A52C4"/>
+        <path d="M44 42 l9 9 m0 -9 l-9 9" stroke="#D0402B" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M64 46 l4 4 l8 -8" fill="none" stroke="#2E8A68" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="60" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#3F2E86">必读要有理由</text>
+        <rect x="30" y="92" width="60" height="20" rx="10" fill="#FBE4DF"/>
+        <text x="60" y="106" text-anchor="middle" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="700" fill="#C2402A">退出 3</text>
+      </g>
+
+      <g transform="translate(288 108)">
+        <rect width="120" height="122" rx="14" fill="#F4F1FC"/>
+        <rect x="14" y="14" width="10" height="44" rx="3" fill="#8D74E0"/>
+        <rect x="96" y="14" width="10" height="44" rx="3" fill="#8D74E0"/>
+        <rect x="24" y="22" width="72" height="8" rx="4" fill="#6A52C4"/>
+        <path d="M44 42 l9 9 m0 -9 l-9 9" stroke="#D0402B" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M64 46 l4 4 l8 -8" fill="none" stroke="#2E8A68" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="60" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#3F2E86">不搬运摘要原文</text>
+        <rect x="30" y="92" width="60" height="20" rx="10" fill="#FBE4DF"/>
+        <text x="60" y="106" text-anchor="middle" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="700" fill="#C2402A">退出 4</text>
+      </g>
+
+      <path d="M420 168 h28" stroke="#2E8A68" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M443 162 l7 6 l-7 6" fill="none" stroke="#2E8A68" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <g transform="translate(460 108)" filter="url(#soft)">
+        <rect width="104" height="122" rx="14" fill="#2E8A68"/>
+        <rect x="30" y="16" width="44" height="54" rx="6" fill="#FFFFFF"/>
+        <rect x="30" y="16" width="44" height="12" rx="6" fill="#E0603F"/>
+        <rect x="30" y="22" width="44" height="6" fill="#E0603F"/>
+        <rect x="37" y="36" width="30" height="4" rx="2" fill="#EBC4B8"/>
+        <rect x="37" y="45" width="24" height="4" rx="2" fill="#F0E0B0"/>
+        <rect x="37" y="54" width="28" height="4" rx="2" fill="#DDE2DF"/>
+        <text x="52" y="92" text-anchor="middle" font-size="13" font-weight="800" fill="#FFFFFF">全部通过</text>
+        <text x="52" y="110" text-anchor="middle" font-size="11" fill="#D6F1E5">写日报→记已读</text>
+      </g>
+      <rect x="24" y="270" width="540" height="44" rx="12" fill="#F4F1FC"/>
+      <text x="42" y="297" font-size="13.5" fill="#3F2E86"><tspan font-weight="700">两阶段提交：</tspan>抓取只读已读名单；日报写成功，才把本期文献记为已读</text>
+    </g>
+    <text x="40" y="858" font-size="12.5" fill="#6B7A74">规则见 scripts/fetch_pubmed.py 与 scripts/render_digest.py；A、C 两格的数字来自仓库里保存的真实 PubMed 运行（evals/runs_v2）</text>
+  </g>
+</svg>
