@@ -1,16 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="300" viewBox="0 0 1120 300" role="img" aria-labelledby="t d">
-  <title id="t">literature-daily 医学文献日报</title>
-  <desc id="d">PubMed 关键词订阅、本地降噪排序，每天一份带中文一句话导读的文献日报</desc>
-  <rect width="1120" height="300" fill="#10241E"/>
-  <rect x="0" y="248" width="1120" height="52" fill="#16302A"/>
-  <text x="60" y="118" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="46" font-weight="700" fill="#F2EFE6">医学文献日报 literature-daily</text>
-  <text x="60" y="170" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="22" fill="#BFEAD2">PubMed 关键词订阅 · 增量去重 · AI 分档 · 中文一句话导读日报</text>
-  <text x="60" y="279" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="19" fill="#7FAE9B">本地运行 · 纯 Python 标准库 · 日报只含导读与链接，不复制摘要原文</text>
-  <rect x="820" y="60" width="244" height="150" rx="14" fill="#16302A"/>
-  <rect x="844" y="84" width="196" height="16" rx="8" fill="#E8734A"/>
-  <rect x="844" y="112" width="150" height="12" rx="6" fill="#2E6E5C"/>
-  <rect x="844" y="132" width="172" height="12" rx="6" fill="#E8C94B"/>
-  <rect x="844" y="152" width="128" height="12" rx="6" fill="#5E6672"/>
-  <rect x="844" y="180" width="180" height="8" rx="4" fill="#23453C"/>
-  <text x="942" y="238" font-family="PingFang SC, Hiragino Sans GB, sans-serif" font-size="15" fill="#7FAE9B" text-anchor="middle">必读 / 值得扫一眼 / 可跳过</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="t d">
+  <title id="t">医学文献日报 literature-daily</title>
+  <desc id="d">订阅 PubMed 关键词，每天一份按研究方向分好档、带中文一句话导读的文献日报</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F2620"/>
+      <stop offset="1" stop-color="#173A31"/>
+    </linearGradient>
+    <filter id="sh" x="-10%" y="-10%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="400" fill="url(#bg)"/>
+  <!-- 细点阵背景 -->
+  <g fill="#FFFFFF" opacity="0.05">
+    <circle cx="640" cy="40" r="2"/><circle cx="680" cy="40" r="2"/><circle cx="720" cy="40" r="2"/><circle cx="760" cy="40" r="2"/>
+    <circle cx="640" cy="80" r="2"/><circle cx="680" cy="80" r="2"/><circle cx="720" cy="80" r="2"/><circle cx="760" cy="80" r="2"/>
+    <circle cx="640" cy="320" r="2"/><circle cx="680" cy="320" r="2"/><circle cx="720" cy="320" r="2"/><circle cx="760" cy="320" r="2"/>
+    <circle cx="640" cy="360" r="2"/><circle cx="680" cy="360" r="2"/><circle cx="720" cy="360" r="2"/><circle cx="760" cy="360" r="2"/>
+  </g>
+  <rect x="0" y="0" width="8" height="400" fill="#E8734A"/>
+
+  <g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+    <text x="72" y="96" font-size="16" font-weight="600" letter-spacing="3" fill="#E8C94B">PUBMED · AGENT SKILL · 每日文献</text>
+    <text x="70" y="168" font-size="58" font-weight="800" fill="#F5F1E6">医学文献日报</text>
+    <text x="74" y="208" font-size="24" font-weight="500" fill="#7FAE9B" font-family="Menlo,'SF Mono',Consolas,monospace">literature-daily</text>
+    <text x="72" y="262" font-size="22" fill="#D7E9DF">订阅 PubMed 关键词，每天一份分好档、</text>
+    <text x="72" y="296" font-size="22" fill="#D7E9DF">带中文一句话导读的文献清单。</text>
+
+    <g font-size="15" fill="#BFEAD2">
+      <rect x="72" y="326" width="96" height="32" rx="16" fill="none" stroke="#3F7A68"/>
+      <text x="120" y="347" text-anchor="middle">增量去重</text>
+      <rect x="180" y="326" width="112" height="32" rx="16" fill="none" stroke="#3F7A68"/>
+      <text x="236" y="347" text-anchor="middle">检索式告警</text>
+      <rect x="304" y="326" width="96" height="32" rx="16" fill="none" stroke="#3F7A68"/>
+      <text x="352" y="347" text-anchor="middle">撤稿标记</text>
+      <rect x="412" y="326" width="96" height="32" rx="16" fill="none" stroke="#3F7A68"/>
+      <text x="460" y="347" text-anchor="middle">本机运行</text>
+    </g>
+
+    <!-- 右侧：日报卡片示意 -->
+    <g transform="translate(812 52)">
+      <rect x="22" y="18" width="320" height="296" rx="14" fill="#2A5246" opacity="0.55"/>
+      <g filter="url(#sh)">
+        <rect x="0" y="0" width="320" height="296" rx="14" fill="#FAF8F3"/>
+      </g>
+      <rect x="0" y="0" width="320" height="52" rx="14" fill="#E8734A"/>
+      <rect x="0" y="38" width="320" height="14" fill="#E8734A"/>
+      <text x="22" y="33" font-size="18" font-weight="700" fill="#FFFFFF">今日文献日报</text>
+      <text x="298" y="33" font-size="13" fill="#FFE9DF" text-anchor="end">PubMed</text>
+
+      <circle cx="30" cy="86" r="7" fill="#D9473A"/>
+      <text x="46" y="91" font-size="15" font-weight="700" fill="#10241E">必读</text>
+      <rect x="46" y="104" width="240" height="9" rx="4.5" fill="#D9DED8"/>
+      <rect x="46" y="120" width="190" height="9" rx="4.5" fill="#E6E9E4"/>
+
+      <circle cx="30" cy="158" r="7" fill="#E8C94B"/>
+      <text x="46" y="163" font-size="15" font-weight="700" fill="#10241E">值得扫一眼</text>
+      <rect x="46" y="176" width="220" height="9" rx="4.5" fill="#D9DED8"/>
+      <rect x="46" y="192" width="170" height="9" rx="4.5" fill="#E6E9E4"/>
+
+      <circle cx="30" cy="230" r="7" fill="#B8BEB9"/>
+      <text x="46" y="235" font-size="15" font-weight="700" fill="#5E6A64">可跳过</text>
+      <rect x="46" y="248" width="200" height="9" rx="4.5" fill="#E6E9E4"/>
+      <rect x="46" y="264" width="140" height="9" rx="4.5" fill="#EEF0EC"/>
+    </g>
+  </g>
 </svg>
